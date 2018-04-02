@@ -1,0 +1,75 @@
+<meta charset="utf-8"/>
+<head id="Head1" runat="server">    
+    <script type="text/javascript" src="jquery.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+
+            //assign button click event to call function to create html table dynamically
+            $("#btnCreateHtmlTable").click(function () {
+                CreateHtmlTable();
+            });
+        }
+        );
+
+        function CreateHtmlTable() {
+
+            try{
+
+
+
+            //Clear result div
+            $("#ResultArea").html("");
+
+            //Crate table html tag
+            var table = $("<table id=DynamicTable border=1></table>").appendTo("#ResultArea");
+
+            //Create table header row
+            var rowHeader = $("<tr></tr>").appendTo(table);
+            $("<td></td>").text("Name").appendTo(rowHeader);
+            $("<td></td").text("ID").appendTo(rowHeader);
+            $("<td></td>").text("Department").appendTo(rowHeader)
+            $("<td></td>").text("Salary").appendTo(rowHeader);
+            $("<td></td>").text("Data").appendTo(rowHeader);
+            //Get JSON data by calling action method in controller
+            $.get("GetEmployeeData.json", function (data, status) {
+                alert("Data: " + data + "\nStatus: " + status);
+                $.each(data, function (i, value) {
+
+                    //Create new row for each record
+                    var row = $("<tr></tr>").appendTo(table);
+                    $("<td></td>").text(value.Name).appendTo(row);
+                    $("<td></td>").text(value.ID).appendTo(row);
+                    $("<td></td>").text(value.Department).appendTo(row);
+                    $("<td></td>").text(value.Salary).appendTo(row);
+                    if(value.type != undefined && value.type != ""){
+                        var typeData = value.type;
+                        //var typeData = $(this).type;
+
+                        var typeElement = $("<input></input>");
+
+                        typeElement.attr("type",typeData.type);
+                        typeElement.attr("id",typeData.id);
+                        typeElement.attr("onclick",typeData.onclick);
+                        typeElement.attr("val",typeData.val);
+                        typeElement.attr("placeholder",typeData.placeholder);
+                        typeElement.text(typeData.text);
+                        typeElement.attr("value",typeData.value);
+                        $("<td></td>").append(typeElement).appendTo(row);
+                    }else{
+                       // $("<td></td>").append("").appendTo(row);
+                    }
+                });
+            }, "json" );  // <--- mandotorly add othrwise we get GetEmployeeData.json throw syntax error. 
+        }catch(e){
+        alert(e);
+
+            }
+        }
+
+    </script>
+</head>
+<body>
+    <input type="button" id="btnCreateHtmlTable" value="Create HTML table" />
+    <div id="ResultArea">
+    </div>        
+</body>

@@ -1,0 +1,53 @@
+[
+  {
+    "Name": "pavan",
+    "ID": "100",
+    "Department": "software",
+    "Salary": "40000",
+    "type":{
+	    	"type":"input",
+	    	"id":"name",
+	    	"onclick":"selectData(this.val)",
+	    	"val":"test",
+	    	"placeholder":"edit name"
+    	}
+  },
+  {
+    "Name": "kumar",
+    "ID": "101",
+    "Department": "IT",
+    "Salary": "30000"
+  },
+  {
+    "Name": "Raju",
+    "ID": "102",
+    "Department": "IT",
+    "Salary": "25000"
+  },
+  {
+    "Name": "praveen",
+    "ID": "103",
+    "Department": "IT",
+    "Salary": "25000",
+    "type":{
+	    	"type":"button",
+	    	"onclick":"selectData(this.val)",
+	    	"val":"test4",
+	    	"placeholder":"edit name",	
+	    	"text":"Send Data",
+	    	"value":"Send Data"
+    	}
+  },
+  {
+    "Name": "ramu",
+    "ID": "104",
+    "Department": "software",
+    "Salary": "25000"
+  },
+  {
+    "Name": "rajesh",
+    "ID": "105",
+    "Department": "software",
+    "Salary": "10000"
+  }
+]
