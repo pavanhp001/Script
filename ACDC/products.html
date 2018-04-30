@@ -1,0 +1,1597 @@
+<html>
+  <head>
+  <link rel="stylesheet" href="project.css" />  
+  <script src="jquery-1.10.2.js"></script>
+  <script src="jquery-ui.js"></script>
+  <script src="angular.min.js"></script>
+ 
+  <script type="text/javascript" src="jquery.min.js?v=1.10.2"></script> 
+  <script type="text/javascript" src="bootstrap.min.js"></script> 
+  <meta charset="UTF-8" name="viewport" content="width=device-width, initial-scale=1" /> 
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" /> 
+<!-- <script type="text/javascript" src="/misc/jquery.once.js?v=1.2"></script>  -->
+<!-- <script type="text/javascript" src="/misc/drupal.js?p7znfe"></script> 
+ --><!-- 
+<script type="text/javascript" src="/sites/all/themes/allconnect-b/js/vendor/swiper/swiper.min.js?p7znfe"></script> 
+<script type="text/javascript" src="/sites/all/themes/allconnect-b/js/project.js?p7znfe"></script> 
+ -->
+</head>
+ <body ng-app="ac-redesign">
+ 		<title>ProductsPage</title>
+
+		<div>
+			<link rel="stylesheet" href="/sites/all/themes/allconnect-b/css/project.min.css" /> 
+			<script src="ac_product_results.js" type="text/javascript"></script>
+<div ng-controller="productResultsController" ng-init="loadProductInfo()">			
+<section class="section section--results section--margins h-bg--dark">
+
+	<div class="container">
+
+		<div class="row">
+
+			<div class="col-md-3">
+
+				<div class="results-sidebar">
+
+					<h3 class="location-utility icon-thick-location">
+
+						<button type="button" data-toggle="modal" data-target="#address-entry">{{zipcode}}</button>
+
+						<button type="button" class="button-utility-2" data-toggle="modal" data-target="#address-entry">update location</button>
+
+					</h3>
+
+					<p class="label-3">Enter your full address for more accurate results.</p>
+
+
+
+					<div class="section-filters">
+
+						<h2 class="headline-2">Filters <button class="button-utility-2" ng-click="clearFilters()">clear all</button></h2>
+
+					</div><!--/.section-filters -->
+
+					<div class="accordion" ng-if="bundleTypes != 0">
+
+	<button class="accordion__header headline-filter jsFilterArrow collapsed" data-toggle="collapse" data-target="#collapseOne" aria-expanded="false" aria-controls="collapseOne">Bundle Type<div class="accordion__arrow graphic graphic-arrow"></div></button>
+
+	<div style="" class="collapse" id="collapseOne" aria-labelledby="headingOne" data-parent="#accordion">
+
+		<div class="accordion__container">
+
+			<div class="checkbox" ng-repeat="bundle in bundleTypes">
+
+				<label for="checkbox{{$index}}" class="label-3">
+
+					<input id="checkbox{{$index}}" name="checkbox-group" ng-checked="{{bundle.isChecked}}" ng-click="onClickFilter(bundle.key,'BundleType')" type="checkbox">
+
+					<i class="checkbox__icon"></i>
+
+					<span class="checkbox__label">{{bundle.key | uppercase }}({{bundle.count}})</span>
+
+				</label>
+
+			</div><!--/.checkbox -->
+
+		</div><!-- /.accordion__container -->
+
+	</div><!-- /.collape -->
+
+</div><!-- /.accordion -->
+
+					<div class="accordion" ng-if="providers != 0">
+
+	<button class="accordion__header headline-filter jsFilterArrow" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">Available Providers<div class="accordion__arrow graphic graphic-arrow accordion__arrow--down"></div></button>
+
+	<div style="" id="collapseTwo" class="collapse show" aria-labelledby="headingTwo" data-parent="#accordion">
+
+		<div class="accordion__container">
+
+			<div class="checkbox" ng-repeat="provider in providers">
+
+					<label for="checkbox-provider{{$index}}" class="label-3">
+
+						<input id="checkbox-provider{{$index}}" name="checkbox-group" ng-checked="{{provider.isChecked}}" ng-click="onClickFilter(provider.key, 'Provider')" type="checkbox">
+
+						<i class="checkbox__icon"></i>
+
+						<span class="checkbox__label">{{provider.key | uppercase }}({{provider.count}})</span>
+
+					</label>
+
+				</div><!--/.checkbox -->
+
+		</div><!-- /.accordion__container -->
+
+	</div><!-- /.collape -->
+
+</div><!-- /.filters-panel -->
+
+					<div class="accordion" ng-if="contractLength != 0">
+
+	<button class="accordion__header headline-filter jsFilterArrow" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">Contract Length<div class="accordion__arrow graphic graphic-arrow"></div></button>
+
+	<div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordion">
+
+		<div class="accordion__container">
+
+			<div class="checkbox" ng-repeat="term in contractLength">
+
+					<label for="checkbox-contract{{$index}}" class="label-3">
+
+						<input id="checkbox-contract{{$index}}" name="checkbox-group" ng-checked="{{term.isChecked}}" ng-click="onClickFilter(term.key,'Contract')" type="checkbox">
+
+						<i class="checkbox__icon"></i>
+
+						<span class="checkbox__label">{{term.key}} <span>Years</span> ({{term.count}})</span>
+
+					</label>
+
+				</div><!--/.checkbox -->
+
+		</div><!-- /.accordion__container -->
+
+	</div><!-- /.collape -->
+
+</div><!-- /.accordion -->
+
+				</div><!--/.results-sidebar -->
+
+			</div><!--/.col -->
+
+			<div class="col-md-9">
+
+				<div class="row">
+
+					<div class="col-12 col-md-4 order-md-2">
+
+						<div class="section--results__button-wrapper">
+
+							<button class="section--results__filters button-utility-2" data-toggle="modal" data-target="#modal-filters">Filters</button>
+
+							<div class="modal fade" id="modal-filters" tabindex="-1" role="dialog" aria-labelledby="modal-sample-default-headline" aria-hidden="true" style="display: none;">
+
+	<div class="modal-dialog modal__dialogue--filter" role="document">
+
+		<div class="modal__content--filter">
+
+			<div class="modal__header modal__header--filter">
+
+				<div class="container">
+
+					<div class="row">
+
+						<div class="col-4">
+
+							<button type="button" class="button-filter">
+
+								<span class="button-filter__clear label-3">CLEAR</span>
+
+							</button>
+
+						</div><!-- /.col -->
+
+
+						<div class="col-4">
+
+							<h3 class="modal__header-headline--filter headline-1">Filters</h3>
+
+						</div><!-- /.col -->
+
+
+						<div class="col-4">
+
+							<button type="button" class="button-filter" data-dismiss="modal" aria-label="Close">
+
+								<span class="button-filter__close label-3" aria-hidden="true">CANCEL</span>
+
+							</button>
+
+						</div><!--/.col -->
+
+					</div><!--/.row -->
+
+				</div><!-- /.container -->
+
+			</div><!--/.modal__header -->
+
+			<div class="modal__body modal__body--filter">
+
+				<div class="row">
+
+					<div class="col-12">
+
+						<form class="filter-modal">
+
+							<fieldset class="filter-modal__container">
+
+								<div class="filter-modal__title">
+
+									<legend>BUNDLE TYPE</legend>
+
+								</div><!-- /.filter-modal__title -->
+
+								<div class="filter-modal__checkbox">
+									
+									<input name="internet" id="internet" type="checkbox">
+									<label class="label-3" for="internet">Internet</label>
+									
+								</div><!-- /.filter-modal__checkbox -->
+
+								<div class="filter-modal__checkbox">
+
+									<input name="tv" id="tv" type="checkbox">
+									<label class="label-3" for="tv">TV</label>
+									
+								</div><!-- /.filter-modal__checkbox -->
+
+								<div class="filter-modal__checkbox">
+									
+									<input name="phone" id="phone" type="checkbox">
+									<label class="label-3" for="phone">Home Phone</label>
+									
+								</div><!-- /.filter-modal__checkbox -->
+
+							</fieldset><!-- /.modal__container -->
+
+							<fieldset class="filter-modal__container">
+
+								<div class="filter-modal__title">
+
+									<legend>AVAILABLE PROVIDERS</legend>
+
+								</div><!-- /.filter-modal__title -->
+
+								<div class="filter-modal__checkbox">
+									
+									<input name="att" id="att" type="checkbox">
+									<label class="label-3" for="att">AT&amp;T (2)</label>
+									
+								</div><!-- /.filter-modal__checkbox -->
+
+								<div class="filter-modal__checkbox">
+									
+									<input name="spectrum" id="spectrum" type="checkbox">
+									<label class="label-3" for="spectrum">Spectrum (3)</label>
+									
+								</div><!-- /.filter-modal__checkbox -->
+
+								<div class="filter-modal__checkbox">
+									
+									<input name="xfinity" id="xfinity" type="checkbox">
+									<label class="label-3" for="xfinity">Xfinity (3)</label>
+									
+								</div><!-- /.filter-modal__checkbox -->
+
+							</fieldset><!-- /.modal__container -->
+
+							<fieldset class="filter-modal__container">
+
+								<div class="filter-modal__title">
+
+									<legend>CONTRACT</legend>
+
+								</div><!-- /.filter-modal__title -->
+
+								<div class="filter-modal__checkbox">
+
+									<input name="no-contract" id="no-contract" type="checkbox">
+									<label class="label-3" for="no-contract">No contract (2)</label>
+																	
+								</div><!-- /.filter-modal__checkbox -->
+
+								<div class="filter-modal__checkbox">
+
+									<input name="one-year" id="one-year" type="checkbox">
+									<label class="label-3" for="one-year">1 year (0)</label>
+									
+								</div><!-- /.filter-modal__checkbox -->
+
+							</fieldset><!-- /.modal__container -->
+
+							<fieldset>
+
+								<div class="filter-modal__title">
+
+									<legend>DOWNLOAD SPEED</legend>
+
+								</div><!-- /.filter-modal__title -->
+
+								<div class="filter-modal__range">
+
+									<p class="label-3">5 Mbps - 300 Mbps</p>
+
+									<input min="5" max="300" step="5" value="250" type="range">
+
+								</div><!-- /.modal__container-range -->
+
+							</fieldset><!-- /.modal__container -->
+
+							<fieldset>
+
+								<div class="filter-modal__title">
+
+									<legend>TV CHANNELS</legend>
+
+								</div><!-- /.filter-modal__title -->
+
+								<div class="filter-modal__range">
+
+									<p class="label-3">10+ channels - 325+ channels</p>
+
+									<input min="5" max="300" step="5" value="150" type="range">
+
+								</div><!-- /.modal__container-range -->
+
+							</fieldset><!-- /.modal__container -->
+
+							<fieldset>
+
+								<div class="filter-modal__title">
+
+									<legend>MONTHLY BUDGET</legend>
+
+								</div><!-- /.filter-modal__title -->
+
+								<div class="filter-modal__range">
+
+									<p class="label-3">$40 - $145</p>
+
+									<input min="5" max="300" step="5" value="250" type="range">
+
+								</div><!-- /.modal__container-range -->
+
+							</fieldset><!-- /.modal__container -->
+
+							<input class="button-filter button-filter--submit" value="Apply Filters" type="submit">
+
+						</form><!-- /form -->
+
+					</div><!--/.col -->
+
+				</div><!--/.row -->
+
+			</div><!--/.modal__body -->
+
+		</div><!--/.modal-content -->
+
+	</div><!--/.modal-dialog -->
+
+</div><!-- /.modal--filter -->
+						</div><!-- /.section--results__button-wrapper -->
+
+					</div><!--/.col -->
+
+					<div class="col-12 col-md-8 order-md-1">
+
+						<div class="section--results__headline-container">
+
+							<h2 class="headline-1 headline-results">{{productCategory}}</h2>
+
+							<div class="section--results__plans label-3">{{productResultsArrayJson.length}} plans</div>
+
+							<div class="section--results__available label-3">available</div>
+
+							<div class="section--results__location location-utility icon-thick-location">
+
+								<button type="button" data-toggle="modal" data-target="#address-entry">{{zipcode}}</button>
+
+							</div><!-- /.section--results__location -->
+
+						</div><!-- /.section--results__headline-container -->
+
+					</div><!--/.col -->
+
+				</div><!--/.row -->
+
+				<div class="row">
+
+					<div class="col-12">
+
+						<ul class="nav tabs">
+
+							<li class="tabs__item active"><a data-toggle="tab" class="tabs__link" ng-click="loadPopularProducts()">Popular</a></li>
+
+							<li class="tabs__item"><a data-toggle="tab" class="tabs__link active show" ng-click="loadFastestProduct()">Fastest</a></li>
+
+							<li class="tabs__item"><a data-toggle="tab" class="tabs__link" ng-click="loadChipestProduct()">Cheapest</a></li>
+
+						</ul> <!--/.nav -->
+
+					</div><!-- /.col -->
+
+				</div><!-- /.row -->
+
+				<div id="menu1" class="tabs__pane fade in active show">
+
+					<div class="row">
+
+						<div class="col-md-12">
+
+							<div class="card card--product" data-ng-repeat="productResultsObject in productResultsArrayJson | limitTo: paginationLimit() track by $index">
+
+									<div class="row card--product__row-top">
+
+									<div class="col-md-6 col-lg-8">
+
+										<div class="card--product__container card--product__intro">
+
+										<button class="label-3 label-icon card--product__details-link-top icon-thin-right right" data-toggle="modal" data-target="#modal-details">Details</button>
+
+										<div class="modal fade modal--details" id="modal-details" tabindex="-1" role="dialog" aria-labelledby="modal-details" aria-hidden="true">
+
+    <div class="modal-dialog" role="document">
+
+        <div class="modal__header--details">
+
+            <div class="row">
+
+                <div class="col-md-3 d-none d-md-block">
+
+                    <span class="card--product__logo-placeholder"><span class="label-3">Logo</span></span>
+
+                </div>
+
+                <div class="col-10 col-md-7">
+
+
+                    <h3 class="modal__header-headline modal__header-headline--details">AT&amp;T<span class="d-none d-md-inline h-inline-after">50 Mbps</span> Internet + DIRECTV<span class="d-none d-md-inline h-inline-after">Select</span></h3>
+
+                </div><!-- /.col -->
+
+                <div class="col-2">
+
+                    <button type="button" class="modal__button-close--details" data-dismiss="modal" aria-label="Close">
+
+                        <span class="icon-thin-delete" aria-hidden="true"></span>
+
+                    </button>
+
+                </div><!-- /.col -->
+
+            </div><!--/.row -->
+
+        </div><!--/.modal__header -->
+
+        <div class="modal__content">
+
+            <div class="modal__body modal__body--details">
+
+                <div class="modal__section-details">
+
+                    <div class="row">
+
+                        <div class="col-12 col-md-6">
+
+                            <div class="card--modal__container d-none d-block d-md-none">
+
+                                <div class="card--modal__container">
+
+                                    <span class="logo logo--att-color">
+
+                                        <img src="/sites/all/themes/allconnect-b/images/logos/logos/att.png" alt="ATT LOGO">
+
+                                    </span>
+
+                                </div><!--/.card--modal__container -->
+
+                                <h3 class="label-1 card--product__headline">AT&amp;T 50 Mbps Internet and DIRECTV Select</h3>
+
+                            </div><!--/.card-product__top -->
+
+                            <div class="card--modal__container">
+
+                                <div class="progress progress__thin card-product__indicator">
+
+                                    <div class="progress-bar w-medium" role="progressbar" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100"></div>
+
+                                </div><!--/.progress__thin -->
+
+                                <h4 class="label-2 label-icon label-indicator icon-thick-wifi">Speeds up to <span>50 Mbps</span></h4>
+
+                                <div class="progress progress__thin card-product__indicator">
+
+                                    <div class="progress-bar w-medium" role="progressbar" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100"></div>
+
+                                </div><!--/.progress__thin -->
+
+                                <h4 class="label-2 label-icon label-indicator icon-thick-playvideo">150+ Channels <button class="button-utility h-inline-after">View channels</button></h4>
+
+                            </div><!--/.card-product__middle -->
+
+                        </div><!-- /.col -->
+
+                        <div class="col-12 col-md-6">
+
+                            <div class="card--modal__container">
+
+                                <!-- LEADING DISCLAIMER (CONTRACT INFO) -->
+                                <h3 class="label-2 card--product__product-intro">Intro contingency</h3>
+
+                                <!-- PRICING -->
+                                <h3 class="price">
+                                <span class="price__currency">$</span>
+                                <span class="price__dollars">80</span>
+                                <span class="price__cents">99</span>
+                                <span class="price__frequency">/mo</span>
+                                </h3>
+
+                                <!-- CLOSING DISCLAIMER -->
+                                <p class="label-4">Legal disclaimer, full product conditional details.<span class="d-block d-md-inline"><button class="button-utility h-is-bold">See offer details</button></span></p>
+
+                            </div><!--/.card-product__bottom -->
+
+                        </div><!-- /.col -->
+
+                    </div><!-- /.row -->
+
+                </div><!-- /.modal__section-details -->
+
+                <div class="modal__section-details-bg">
+
+                    <div class="row justify-content-center">
+
+                        <div class="col-12">
+
+                            <h4 class="headline-bundle">We recommend this plan for</h4>
+
+                        </div><!--/.col -->
+
+                        <div class="col-12">
+
+                            <ul class="list list--features">
+
+                                <li class="list--features__item icon-thick-laptop">1-3 devices</li>
+
+                                <li class="list--features__item icon-thick-mail">Basic browsing and email</li>
+
+                                <li class="list--features__item icon-thick-directright">HD streaming</li>
+
+                                <li class="list--features__item icon-thin-videogame">Online gaming</li>
+
+                            </ul>
+
+                        </div><!--/.col -->
+
+                    </div><!--/.row -->
+
+                </div><!-- /.modal__section-details-bg -->
+
+                <div class="modal__section-details-list">
+
+                    <div class="row">
+
+                        <div class="col-lg-2">
+
+                            <span class="logo logo--att-color">
+
+                                <img src="/sites/all/themes/allconnect-b/images/logos/logos/att.png" alt="ATT LOGO">
+
+                            </span>
+
+                        </div><!--/.col -->
+
+                    </div><!--/.row -->
+
+                    <div class="row">
+
+                        <div class="col-lg-12">
+
+                            <ul class="list">
+
+                                <li class="label-3 icon-thick-navigateright">AT&amp;T internet is #1 in customer satisfaction compared to other major cable internet providers.<br><span class="label-4">Claim based on 2017 ACSI survey of customers ranking their own internet provider’s performance.</span></li>
+
+                                <li class="label-3 icon-thick-navigateright">Save $10/mo. on internet when you bundle with other AT&amp;T services.<br><span class="label-4">12-mo. agmt req’d. Incl 1TB data/mo. $10 chrg for each add’l 50GB (up to $100/mo). Other charges may apply. Geo. &amp; svc. restr. Apply.</span></li>
+
+                                <li class="label-3 icon-thick-navigateright">Over 99% reliability on the nation’s largest fiber network.</li>
+
+                            </ul><!-- /.list -->
+
+                        </div><!--/.col -->
+
+                    </div><!--/.row -->
+
+                </div><!-- /.modal__section-details-list -->
+
+            </div><!-- /.modal__body -->
+
+            <div class="modal__footer--details">
+
+                <div class="container">
+
+                    <div class="row">
+
+                        <div class="col-12">
+
+                            <a href="tel:1-888-888-888" class="modal__button button button--primary button--primary-no-icon">Call to order</a>
+
+                        </div><!-- /.col -->
+
+                    </div><!-- /.row -->
+
+                </div><!-- /.container -->
+
+            </div><!-- /.modal__footer--details -->
+
+        </div><!--/.modal-content -->
+
+    </div><!--/.modal-dialog -->
+
+</div><!--/.modal -->
+
+
+										<button class="button-utility-2 card--product__details-link-top-desktop" type="button" data-toggle="collapse" data-target="#collapseCard{{$index}}" aria-expanded="false" aria-controls="collapseCard">Details</button>
+
+										<div class="row">
+
+											<div class="col-lg-2">
+
+												<span class="logo logo--att-color">
+
+                          <img alt="{{productResultsObject.providerExternalId}}" src="/common/logos/{{productResultsObject.providerExternalId}}.png">
+
+												</span>
+
+											</div><!--/.col -->
+
+											<div class="col-lg-8 offset-lg-1">
+
+												<h3 class="label-1 card--product__headline">{{productResultsObject.productName}}</h3>
+
+											</div><!--/.col -->
+
+										</div><!--/.row -->
+
+										<div class="row">
+
+											<div class="col-lg-6" ng-if="productResultsObject.connectionSpeed != undefined">
+
+											<!-- CATEGORY LOGIC FOR INTERNET & SPEED -->
+											<!-- &&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&& -->
+											<div class="indicator-wrap">
+
+												<div class="card--product__indicator"></div>
+
+												<h4 class="label-2 card--product__indicator-label card--product__speed-text icon-thick-wifi">Speeds up to <span>{{productResultsObject.connectionSpeed}} Mbps</span></h4>
+
+											</div><!--/.indicator-wrap -->
+
+											</div><!--/.col -->
+
+											<div class="col-lg-6" ng-if="productResultsObject.noofChannels != undefined">
+
+											<!-- CATEGORY LOGIC FOR TV -->
+											<!-- &&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&& -->
+											<div class="indicator-wrap">
+
+												<div class="card--product__indicator"></div>
+
+												<h4 class="label-2 card--product__indicator-label card--product__speed-text icon-thick-playvideo">{{productResultsObject.noofChannels}}+ Channels <button class="button-utility h-is-bold h-inline-after" data-toggle="modal" data-target="#modal-channels">View channels</button></h4>
+
+											</div><!--/.indicator-wrap -->
+
+											</div><!--/.col -->
+
+										</div><!--/.row -->
+
+										</div><!--/.card--product__intro -->
+
+									</div><!--/.card -->
+
+									<div class="col-md-6 col-lg-4">
+
+										<div class="card--product__container card--product__body">
+
+										<!-- LEADING DISCLAIMER (CONTRACT INFO) -->
+										<h3 class="label-2 card--product__product-intro">Intro contingency</h3>
+
+										<!-- PRICING -->
+                    <h3 class="price" ng-if="splitPrices(productResultsObject.baseRecurringPrice)">
+
+	                    <span class="price__currency">$</span>
+
+	                    <span class="price__dollars">{{nonDecimalPrice}}</span>
+
+	                    <span class="price__cents">{{decimalPrice}}</span>
+
+	                    <span class="price__frequency">/mo</span>
+
+	                  </h3>
+
+										<!-- CLOSING DISCLAIMER -->
+										<p class="label-4 card--product__legal">Legal disclaimer, full product conditional details.</p>
+
+										<button class="button-utility" data-toggle="modal" data-target="#plan-details">See offer details</button>
+
+										
+<div class="modal fade" id="plan-details" tabindex="-1" role="dialog" aria-labelledby="plan-details" aria-hidden="true">
+
+    <div class="modal-dialog modal__dialogue" role="document">
+
+        <div class="modal__content">
+
+            <div class="modal__header modal--plan-details__header">
+
+                 <div class="row align-items-center">
+
+                    <div class="col-md-2 d-none d-md-block">
+
+                        <!-- <span class="card--product__logo-placeholder"><span class="label-3">Logo</span></span> -->
+
+                        <img src="/sites/all/themes/allconnect-b/images/logos/logo-small-att-color.png" alt="">
+
+                    </div><!-- /.col -->
+
+                    <div class="col-10 col-md-8">
+
+                        <h3 class="label-1 h-text-center">AT&amp;T 50 Mbps Internet + DIRECTV Select Offer Details</h3>
+
+                    </div><!-- /.col -->
+
+                    <div class="col-2">
+
+                        <button type="button" class="modal__button-close" data-dismiss="modal" aria-label="Close">
+
+                            <span class="icon-thin-delete" aria-hidden="true"></span>
+
+                        </button>
+
+                    </div><!-- /.col -->
+
+                </div><!--/.row -->
+
+            </div><!--/.modal__header -->
+
+            <div class="modal__body">
+
+                <div class="row">
+
+                     <div class="col-12">
+
+                        <p class="h-text-center">This promotion is for new customers and existing customers adding video. The promotional price is good for 12 months. Price will increase $20 for months13-24. Price will increase an additional $20 on month 25 and remain the same for the life of their package. This promotion does not include equipment.</p>
+
+                        <p class="h-text-center">Pricing per month plus taxes for length of contract. Additional fees and terms may apply. Pricing varies by location and availability. All prices subject to change at any time. May or may not be available based on service address. Speeds may vary.</p>
+
+                    </div><!-- /.col -->
+
+                </div><!--/.row -->
+
+            </div><!-- /.container -->
+
+            <div class="modal__footer h-bg--vivid-pink d-none d-md-block">
+
+                <div class="row">
+
+                    <div class="col-md-8 d-flex align-items-center">
+
+                        <h3 class="modal__footer-headline">Let’s get you connected. Call now to order TV.</h3>
+
+                    </div><!--/.col -->
+
+                    <div class="col-md-4 d-flex align-items-center justify-content-end">
+
+                        <a href="#" class="phone phone--all-white">{{ac_phone_number}}</a>
+
+                    </div><!--/.col -->
+
+                </div><!--/.row -->
+
+            </div><!--/.modal__footer -->
+
+            <div class="modal__footer d-none d-block d-md-none">
+
+                <div class="row">
+
+                    <div class="col-12">
+
+                        <a href="#" class="modal__button button button--primary button--primary-no-icon">Call to order</a>
+
+                    </div><!-- .col -->
+
+                </div><!-- /.row -->
+
+            </div><!-- /.modal__footer -->
+
+        </div><!--/.modal-content -->
+
+    </div><!--/.modal-dialog -->
+
+</div><!--/.modal -->
+										<a href="tel:1-888-888-888" class="button button--secondary button--full card--product__button d-block d-md-none">Call to order</a>
+
+										<a href="#" class="button button--secondary button--full card--product__button" data-toggle="modal" data-target="#modal-order">Order now</a>
+
+										<div class="modal fade" id="modal-order" tabindex="-1" role="dialog" aria-labelledby="modal-order" aria-hidden="true">
+
+    <div class="modal-dialog modal--order__dialogue" role="document">
+
+        <div class="modal__content modal--order__content">
+
+            <div class="modal__body modal--order__body">
+
+                <div class="row">
+
+                    <div class="col-md-5 modal--order__column-vivid order-md-2">
+
+                        <div class="modal--order__container container">
+                    
+                            <div class="row">
+
+                                <div class="col-md-12">
+
+                                    <button type="button" class="modal__button-close modal--order__button-close" data-dismiss="modal" aria-label="Close">
+
+                                        <span class="icon-thin-delete" aria-hidden="true"></span>
+
+                                    </button>
+
+                                </div><!--/.col -->
+
+                            </div><!-- /.row -->
+
+                            <div class="row">
+
+                                <div class="col-12">
+                                    
+                                    <h3>AT&amp;T 50 Mbps Internet + DIRECTV Select</h3>
+
+                                </div>
+
+                                <div class="col-12">
+
+                                    <h3 class="label-3 price__intro">2 yr contract</h3>
+                                    
+                                    <h3 class="price">
+                                        <span class="price__currency">$</span>
+                                        <span class="price__dollars">80</span>
+                                        <span class="price__frequency">/mo</span>
+                                    </h3>
+
+                                    <p class="label-4 card--product__legal">Plus taxes. W/12 mo. agmt. Add’l fees apply.</p>
+
+                                    <button class="modal__button button-utility button-utility--white">See offer details</button>
+
+                                </div>
+
+                                <div class="col-12">
+
+                                    <ul class="list list--order">
+
+                                        <li class="list--order__item list--order__item-check">50 Mbps Download Speeds</li>
+
+                                        <li class="list--order__item list--order__item-check">150+ channels</li>
+
+                                    </ul><!-- /.list -->
+                                    
+                                </div><!-- /.col -->
+
+                                <div class="col-12">
+
+                                    <div class="modal--order__plan">
+
+                                        <h3 class="label-plans">This plan includes</h3>
+                                    
+                                        <p class="label-3">Genie HD DVR upgrade: One HD DVR powers your entire home.</p>
+
+                                        <p class="label-4">Add'l equipment &amp; fees req'd for whole home functionality.</p>
+                                        
+                                    </div><!-- /.modal--order__copy -->
+
+                                </div><!-- /.col -->
+
+                                <div class="col-12">
+
+                                    <p class="label-3">Includes Wi-Fi Gateway router to connect your devices</p>
+                                    
+                                    <p class="label-3">Includes access to the national AT&amp;T Wi-Fi Hot Spot Network, at no charge</p>
+
+                                </div><!-- /.col -->
+
+                            </div><!-- /.row -->
+
+                        </div><!-- /.container -->
+
+                    </div><!--/.col -->
+
+                    <div class="col-md-7 modal--order__column">
+                        
+                        <div class="modal--order__container container">
+
+                            <div class="row">
+
+                                <div class="col-12">
+                                    
+                                    <h2 class="modal--order__headline headline-modal">You’re just one step away from getting connected.</h2>
+
+                                </div><!-- /.col -->
+
+                            </div><!-- /.row -->
+
+                            <div class="row">
+
+                                <div class="col-md-6">
+
+                                    <ul class="list list--order">
+
+                                        <li class="list--order__item list--order__item-friends">Friendly Specialists</li>
+
+                                        <p>Our specialists will help you find the best packages and services for your needs.</p>
+
+                                    </ul><!-- /.list -->
+
+                                </div><!-- /.col -->
+
+                                <div class="col-md-6">
+                                    
+                                    <ul class="list list--order">
+
+                                        <li class="list--order__item list--order__item-deals">Latest Deals</li>
+
+                                        <p>We've done the work and found the latest deals so you don't have to.</p>
+
+                                    </ul><!-- /.list -->
+
+                                </div><!-- /.col -->
+
+                            </div><!-- /.row -->
+
+                            <div class="row">
+
+                                <div class="col-12">
+
+                                    <div class="modal--order__footer d-none d-md-block">
+                                    
+                                        <h3>Call now to order AT&amp;T and DIRECTV</h3>
+
+                                        <a href="#" class="phone phone__order-now">{{ac_phone_number}}</a>
+
+                                    </div><!-- /.modal--order__footer -->
+
+                                    <div class="modal--order__footer-mobile d-md-none">
+                                    
+                                        <a href="#" class="modal__button button button--primary button--primary-no-icon">Call to order</a>
+
+                                    </div><!-- /.modal--order__footer -->
+
+                                </div><!-- /.col -->
+
+                            </div><!-- /.row -->
+
+                        </div><!-- /.container -->
+
+                    </div><!--/.col -->
+
+                </div><!--/.row -->
+
+            </div><!--/.modal__body -->
+
+        </div><!--/.modal-content -->
+
+    </div><!--/.modal-dialog -->
+
+</div><!--/.modal -->
+										</div><!--/.card--product__body -->
+
+									</div>
+
+									</div>
+
+									<div class="card--product__details collapse" id="collapseCard{{$index}}">
+
+									<!--  -->
+
+									<!-- CATEGORY LOGIC FOR INTERNET & SPEED -->
+									<!-- &&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&& -->
+									<section class="card--product__section" ng-if="findProductTypeInternet(items.productType) == true">
+
+										<div class="row">
+
+										<div class="col-md-12">
+
+											<h4 class="label-2 card--product__section-title">We recommend this plan for</h4>
+
+										</div><!--/.col -->
+
+										</div><!--/.row -->
+
+										<div class="row">
+
+										<div class="col-md-6 col-lg-5">
+
+											<ul class="list list--features">
+
+											<li class="list--features__item icon-thick-laptop" ng-if="getInternetPlanDetails(items.connectionSpeed, 'Devices') != null">{{getInternetPlanDetails(items.connectionSpeed, 'Devices')}}</li>
+
+											<li class="list--features__item icon-thick-mail" ng-if="getInternetPlanDetails(items.connectionSpeed, 'prop1') != null">{{getInternetPlanDetails(items.connectionSpeed, 'prop1')}}</li>
+
+											</ul>
+
+										</div><!--/.col -->
+
+										<div class="col-md-6 col-lg-5 offset-lg-1">
+
+											<ul class="list list--features">
+
+											<li class="list--features__item icon-thick-directright" ng-if="getInternetPlanDetails(items.connectionSpeed, 'prop2') != null">{{getInternetPlanDetails(items.connectionSpeed, 'prop2')}}</li>
+
+											<li class="list--features__item icon-thin-videogame" ng-if="getInternetPlanDetails(items.connectionSpeed, 'prop3')">{{getInternetPlanDetails(items.connectionSpeed, 'prop3')}}</li>
+
+											</ul>
+
+										</div><!--/.col -->
+
+										</div><!--/.row -->
+
+									</section>
+
+									<!-- PROVIDER DETAILS -->
+									<!-- &&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&& -->
+									<section class="card--product__section">
+
+										<div class="row">
+
+										<div class="col-lg-2">
+
+											<span class="logo logo--att-color">
+
+												<img alt="{{productResultsObject.providerExternalId}}" src="/common/logos/{{productResultsObject.providerExternalId}}.png">
+
+											</span>
+
+										</div><!--/.col -->
+
+										</div><!--/.row -->
+
+										<div class="row">
+
+											<div class="col-lg-12">
+
+												<ul class="list">
+
+													<li class="label-3 icon-thick-navigateright" ng-if="getDetailsByProviderProp1(items.providerExternalId, 'prop1') != null">{{getDetailsByProviderProp1(items.providerExternalId, 'prop1')}}</li>
+
+													<li class="label-3 icon-thick-navigateright" ng-if="getDetailsByProviderProp1(items.providerExternalId, 'prop2') != null">{{getDetailsByProviderProp1(items.providerExternalId, 'prop2')}}</li>
+
+													<li class="label-3 icon-thick-navigateright" ng-if="getDetailsByProviderProp1(items.providerExternalId, 'prop3') != null">{{getDetailsByProviderProp1(items.providerExternalId, 'prop3')}}</li>
+
+												</ul><!-- /.list -->
+
+											</div><!--/.col -->
+
+										</div><!--/.row -->
+
+									</section><!--/.card--product__section -->
+
+									<div class="card--product__details-footer">
+
+										<div class="row">
+
+										<div class="col-lg-8">
+
+											<h2 class="label-1 icon-thick-phone card--product__phone h-inline-block">Call <span>1-888-888-8888</span> to order this plan</h2>
+
+											<a href="#" class="button button--primary button--full card--product__button-order">Order Now</a>
+
+										</div><!--/.col -->
+
+										<div class="col-lg-4 h-align-right d-flex align-items-center justify-content-end">
+
+											<button class="button-utility-2" type="button" data-toggle="collapse" data-target="#collapseCard{{$index}}" aria-expanded="false" aria-controls="collapseCard{{$index}}">Close details</button>
+
+										</div><!--/.col -->
+
+										</div><!--/.row -->
+
+									</div>
+
+									</div><!--/.card--product__details -->
+
+								</div><!--/.card--product -->
+
+								<div class="modal fade" id="modal-channels" tabindex="-1" role="dialog" aria-labelledby="modal-channels" aria-hidden="true">
+
+    <div class="modal-dialog modal__dialogue" role="document">
+
+        <div class="modal__content">
+
+            <div class="modal__header">
+
+                 <div class="row">
+
+                    <div class="col-2">
+
+                        <a href="#" class="headline-modal-link">Back</a>
+
+                    </div><!-- /.col -->
+
+                    <div class="col-8">
+
+                        <h3 class="modal__header-headline">DIRECTV Channels</h3>
+
+                    </div><!-- /.col -->
+
+                    <div class="col-2 d-none d-md-block">
+
+                        <button type="button" class="modal__button-close" data-dismiss="modal" aria-label="Close">
+
+                            <span class="icon-thin-delete" aria-hidden="true"></span>
+
+                        </button>
+
+                    </div><!-- /.col -->
+
+                </div><!--/.row -->
+
+            </div><!--/.modal__header -->
+
+            <div class="modal__table">
+
+                <div class="row">
+
+                     <div class="col-12">
+
+                        <div class="table table--modal">
+
+                            <div class="table__body">
+
+                                <div class="table__row">
+
+                                    <div class="table__head table--modal__head table__head--empty">&nbsp;</div>
+
+                                    <div class="table__head table--modal__head">
+
+                                        <h3 class="table--modal__plans">Select</h3>
+
+                                        <h3 class="table--modal__channels">150+</h3>
+
+                                    </div><!-- /.table__head -->
+
+                                    <div class="table__head table--modal__head">
+
+                                        <h3 class="table--modal__plans">Entertainment</h3>
+
+                                        <h3 class="table--modal__channels">155+</h3>
+
+                                    </div><!-- /.table__head -->
+
+                                    <div class="table__head table--modal__head">
+
+                                        <h3 class="table--modal__plans">Choice</h3>
+
+                                        <h3 class="table--modal__channels">160+</h3>
+
+                                    </div><!-- /.table__head -->
+
+                                    <div class="table__head table--modal__head">
+
+                                        <h3 class="table--modal__plans">Xtra</h3>
+
+                                         <h3 class="table--modal__channels">175+</h3>
+
+                                    </div><!-- /.table__head -->
+
+                                    <div class="table__head table--modal__head">
+
+                                        <h3 class="table--modal__plans">Premier</h3>
+
+                                        <h3 class="table--modal__channels">225+</h3>
+
+                                    </div><!-- /.table__head -->
+
+                                    <div class="table__head table--modal__head">
+
+                                        <h3 class="table--modal__plans">Ultimate</h3>
+
+                                        <h3 class="table--modal__channels">415+</h3>
+
+                                    </div><!-- /.table__head -->
+
+                                </div><!-- /.table__row -->
+
+                                <div class="table__row">
+
+                                    <div class="table__head table--modal__head">
+                                        
+                                        <div class="table__logo logo logo--ae-color"></div>
+
+                                    </div><!-- /.table__head -->
+
+                                    <div class="table__cell table--modal__cell">
+                                      
+                                        <div class="table--modal__circle"></div>    
+
+                                    </div><!-- /.table__cell -->
+
+                                    <div class="table__cell table--modal__cell">
+                                      
+                                        <div class="table--modal__circle"></div>    
+
+                                    </div><!-- /.table__cell -->
+
+                                    <div class="table__cell table--modal__cell">
+                                      
+                                        <div class="table--modal__circle"></div>    
+
+                                    </div><!-- /.table__cell -->
+
+                                    <div class="table__cell table--modal__cell">
+                                      
+                                        <div class="table--modal__circle"></div>    
+
+                                    </div><!-- /.table__cell -->
+
+                                    <div class="table__cell table--modal__cell">
+                                      
+                                        <div class="table--modal__circle"></div>    
+
+                                    </div><!-- /.table__cell -->
+
+                                    <div class="table__cell table--modal__cell">
+                                      
+                                        <div class="table--modal__circle"></div>    
+
+                                    </div><!-- /.table__cell -->
+
+                                </div><!-- /.table__row -->
+
+                                <div class="table__row">
+
+                                    <div class="table__head table--modal__head">
+                                        
+                                        <div class="table__logo logo logo--ae-color"></div>
+
+                                    </div><!-- /.table__head -->
+
+                                    <div class="table__cell table--modal__cell">
+                                      
+                                        <div class="table--modal__circle"></div>    
+
+                                    </div><!-- /.table__cell -->
+
+                                    <div class="table__cell table--modal__cell">
+                                      
+                                        <div class="table--modal__circle"></div>    
+
+                                    </div><!-- /.table__cell -->
+
+                                    <div class="table__cell table--modal__cell">
+                                      
+                                        <div class="table--modal__circle"></div>    
+
+                                    </div><!-- /.table__cell -->
+
+                                    <div class="table__cell table--modal__cell">
+                                      
+                                        <div class="table--modal__circle"></div>    
+
+                                    </div><!-- /.table__cell -->
+
+                                    <div class="table__cell table--modal__cell">
+                                      
+                                        <div class="table--modal__circle"></div>    
+
+                                    </div><!-- /.table__cell -->
+
+                                    <div class="table__cell table--modal__cell">
+                                      
+                                        <div class="table--modal__circle"></div>    
+
+                                    </div><!-- /.table__cell -->
+
+                                </div><!-- /.table__row -->
+
+                                <div class="table__row">
+
+                                    <div class="table__head table--modal__head">
+                                        
+                                        <div class="table__logo logo logo--ae-color"></div>
+
+                                    </div><!-- /.table__head -->
+
+                                    <div class="table__cell table--modal__cell">
+                                      
+                                        <div class="table--modal__circle"></div>    
+
+                                    </div><!-- /.table__cell -->
+
+                                    <div class="table__cell table--modal__cell">
+                                      
+                                        <div class="table--modal__circle"></div>    
+
+                                    </div><!-- /.table__cell -->
+
+                                    <div class="table__cell table--modal__cell">
+                                      
+                                        <div class="table--modal__circle"></div>    
+
+                                    </div><!-- /.table__cell -->
+
+                                    <div class="table__cell table--modal__cell">
+                                      
+                                        <div class="table--modal__circle"></div>    
+
+                                    </div><!-- /.table__cell -->
+
+                                    <div class="table__cell table--modal__cell">
+                                      
+                                        <div class="table--modal__circle"></div>    
+
+                                    </div><!-- /.table__cell -->
+
+                                    <div class="table__cell table--modal__cell">
+                                      
+                                        <div class="table--modal__circle"></div>    
+
+                                    </div><!-- /.table__cell -->
+
+                                </div><!-- /.table__row -->
+
+                                <div class="table__row">
+
+                                    <div class="table__head table--modal__head">
+                                        
+                                        <div class="table__logo logo logo--ae-color"></div>
+
+                                    </div><!-- /.table__head -->
+
+                                    <div class="table__cell table--modal__cell">
+                                      
+                                        <div class="table--modal__circle"></div>    
+
+                                    </div><!-- /.table__cell -->
+
+                                    <div class="table__cell table--modal__cell">
+                                      
+                                        <div class="table--modal__circle"></div>    
+
+                                    </div><!-- /.table__cell -->
+
+                                    <div class="table__cell table--modal__cell">
+                                      
+                                        <div class="table--modal__circle"></div>    
+
+                                    </div><!-- /.table__cell -->
+
+                                    <div class="table__cell table--modal__cell">
+                                      
+                                        <div class="table--modal__circle"></div>    
+
+                                    </div><!-- /.table__cell -->
+
+                                    <div class="table__cell table--modal__cell">
+                                      
+                                        <div class="table--modal__circle"></div>    
+
+                                    </div><!-- /.table__cell -->
+
+                                    <div class="table__cell table--modal__cell">
+                                      
+                                        <div class="table--modal__circle"></div>    
+
+                                    </div><!-- /.table__cell -->
+
+                                  </div><!-- /.table__row -->
+
+                                  <div class="table__row">
+
+                                    <div class="table__head table--modal__head">
+                                        
+                                        <div class="table__logo logo logo--ae-color"></div>
+
+                                    </div><!-- /.table__head -->
+
+                                    <div class="table__cell table--modal__cell">
+                                      
+                                        <div class="table--modal__circle"></div>    
+
+                                    </div><!-- /.table__cell -->
+
+                                    <div class="table__cell table--modal__cell">
+                                      
+                                        <div class="table--modal__circle"></div>    
+
+                                    </div><!-- /.table__cell -->
+
+                                    <div class="table__cell table--modal__cell">
+                                      
+                                        <div class="table--modal__circle"></div>    
+
+                                    </div><!-- /.table__cell -->
+
+                                    <div class="table__cell table--modal__cell">
+                                      
+                                        <div class="table--modal__circle"></div>    
+
+                                    </div><!-- /.table__cell -->
+
+                                    <div class="table__cell table--modal__cell">
+                                      
+                                        <div class="table--modal__circle"></div>    
+
+                                    </div><!-- /.table__cell -->
+
+                                    <div class="table__cell table--modal__cell">
+                                      
+                                        <div class="table--modal__circle"></div>    
+
+                                    </div><!-- /.table__cell -->
+
+                                </div><!-- /.table__row -->
+
+                                <div class="table__row">
+
+                                    <div class="table__head table--modal__head">
+                                        
+                                        <div class="table__logo logo logo--ae-color"></div>
+
+                                    </div><!-- /.table__head -->
+
+                                    <div class="table__cell table--modal__cell">
+                                      
+                                        <div class="table--modal__circle"></div>    
+
+                                    </div><!-- /.table__cell -->
+
+                                    <div class="table__cell table--modal__cell">
+                                      
+                                        <div class="table--modal__circle"></div>    
+
+                                    </div><!-- /.table__cell -->
+
+                                    <div class="table__cell table--modal__cell">
+                                      
+                                        <div class="table--modal__circle"></div>    
+
+                                    </div><!-- /.table__cell -->
+
+                                    <div class="table__cell table--modal__cell">
+                                      
+                                        <div class="table--modal__circle"></div>    
+
+                                    </div><!-- /.table__cell -->
+
+                                    <div class="table__cell table--modal__cell">
+                                      
+                                        <div class="table--modal__circle"></div>    
+
+                                    </div><!-- /.table__cell -->
+
+                                    <div class="table__cell table--modal__cell">
+                                      
+                                        <div class="table--modal__circle"></div>    
+
+                                    </div><!-- /.table__cell -->
+
+                                </div><!-- /.table__row -->
+
+                                <div class="table__row">
+
+                                    <div class="table__head table--modal__head">
+                                        
+                                        <div class="table__logo logo logo--ae-color"></div>
+
+                                    </div><!-- /.table__head -->
+
+                                    <div class="table__cell table--modal__cell">
+                                      
+                                        <div class="table--modal__circle"></div>    
+
+                                    </div><!-- /.table__cell -->
+
+                                    <div class="table__cell table--modal__cell">
+                                      
+                                        <div class="table--modal__circle"></div>    
+
+                                    </div><!-- /.table__cell -->
+
+                                    <div class="table__cell table--modal__cell">
+                                      
+                                        <div class="table--modal__circle"></div>    
+
+                                    </div><!-- /.table__cell -->
+
+                                    <div class="table__cell table--modal__cell">
+                                      
+                                        <div class="table--modal__circle"></div>    
+
+                                    </div><!-- /.table__cell -->
+
+                                    <div class="table__cell table--modal__cell">
+                                      
+                                        <div class="table--modal__circle"></div>    
+
+                                    </div><!-- /.table__cell -->
+
+                                    <div class="table__cell table--modal__cell">
+                                      
+                                        <div class="table--modal__circle"></div>    
+
+                                    </div><!-- /.table__cell -->
+
+                                </div><!-- /.table__row -->
+
+                            </div><!-- /.table__body -->
+
+                        </div><!-- /.table -->
+
+                    </div><!-- /.col -->
+
+                </div><!--/.row -->
+
+            </div><!-- /.modal__table -->
+
+            <div class="modal__footer h-bg--vivid-pink d-none d-md-block">
+
+                <div class="row">
+
+                    <div class="col-md-8 d-flex align-items-center">
+
+                        <h3 class="modal__footer-headline">Let’s get you connected. Call now to order AT&amp;T and DIRECTV.</h3>
+
+                    </div><!--/.col -->
+
+                    <div class="col-md-4 d-flex align-items-center justify-content-end">
+
+                        <a href="#" class="phone phone--all-white">{{ac_phone_number}}</a>
+
+                    </div><!--/.col -->
+
+                </div><!--/.row -->
+
+            </div><!--/.modal__footer -->
+
+            <div class="modal__footer d-none d-block d-md-none">
+
+                <div class="row">
+
+                    <div class="col-12">
+
+                        <a href="#" class="modal__button button button--primary button--primary-no-icon">Call to order</a>
+
+                    </div><!-- .col -->
+
+                </div><!-- /.row -->
+
+            </div><!-- /.modal__footer -->
+
+        </div><!--/.modal-content -->
+
+    </div><!--/.modal-dialog -->
+
+</div><!--/.modal -->
+
+
+						</div><!--/.col -->
+
+					</div><!--/.row -->
+
+				</div><!-- /.tabs-pane -->
+
+				<div id="menu2" class="tabs__pane fade"></div><!-- /.tabs__pane -->
+
+				<div id="menu3" class="tabs__pane fade"></div><!-- /.tabs__pane -->
+
+				<div class="col-12 text-center">
+
+					<a href="#" class="button button--full button--primary button--primary-no-icon" ng-show="hasMoreItemsToShow()" ng-click="showMoreItems()">View more plans</a>
+
+          <a href="#" class="button button--full button--primary button--primary-no-icon" ng-show="hasLessItemsToShow()" ng-click="showLessItems()">View less plans</a>
+
+				</div><!-- /.col -->
+
+
+			</div><!--/.col -->
+
+		</div><!--/.row -->
+
+	</div><!--/.container -->
+
+</section>
+
+	</div>
+</div>
+<script>
+var productCategory = 'bundles';
+var zipcode = '19962';
+var productResutsArray = [{"longDescription":null,"displayBasePrice":null,"promotionAllMetaData":"[M_UP_SPEED=5 Mbps, M_DOWN_SPEED=150 Mbps, PROMO_SUMMARY=$79.99 for the first 24 months, $153.49 per month for month 25 onwards, Account=DISCONNECTED]","displayPromotionPrice":null,"baseNonRecurringPrice":0.0,"baseRecurringPrice":79.99,"descriptiveInfoDescription":null,"promotionPrice":79.99,"priceUnitType":null,"productName":"(DS_POS)  Dig Starter w\/Performance Pro TP w\/Agrmt $79.99 x 24M \/ $99.99 x 12M \/ $124.99 x 12M \/ EDP (Blast $0x12) - NED  \u2013 New","metaData":null,"score":null,"productExternalId":"RTS:COMCAST:1777000466","rank":45,"descriptiveInfoType":null,"providerName":"Comcast","productType":"TV, Internet, Phone","promotionType":"baseMonthlyDiscount","promotionPriceValueType":"absolute","productJson":null,"promotionCode":"","descriptiveInfoValue":"Up to 150.0 Mbps download speed. Up to 5.0 Mbps upload speed.","internetFeatures":null,"longDistance":null,"zipcode":"19962","parentExternalId":null,"productCategories":"bundles","promotionDescription":"N\/A","qualification":"N\/A","parentName":null,"effectivePrice":null,"internetSpeed":null,"channels":null,"marketingHighlights":"[]","itemExternalId":null,"capabilityMap":"{wiredDataUpSpeed=wiredDataUpSpeed, digitalCable=digitalCable, longDistancePhone=longDistancePhone, wiredDataDownSpeed=wiredDataDownSpeed, localPhone=localPhone}","productDataId":95924,"providerExternalId":"26069942","promotionExternalId":"RTS:COMCAST:1777000466","shortDesc":"N\/A","conditions":"N\/A"},{"longDescription":null,"displayBasePrice":null,"promotionAllMetaData":"[M_UP_SPEED=5 Mbps, M_DOWN_SPEED=150 Mbps, PROMO_SUMMARY=$89.99 for the first 12 months, $153.49 per month for month 13 onwards, Account=DISCONNECTED]","displayPromotionPrice":null,"baseNonRecurringPrice":0.0,"baseRecurringPrice":89.99,"descriptiveInfoDescription":null,"promotionPrice":89.99,"priceUnitType":null,"productName":"(DS_POS) Dig Starter w\/Performance Pro TP  $89.99 x 12M \/ $114.99 x 12M \/ $139.99 x 12M \/ EDP  - NED \u2013 New","metaData":null,"score":null,"productExternalId":"RTS:COMCAST:1777000468","rank":46,"descriptiveInfoType":null,"providerName":"Comcast","productType":"TV, Internet, Phone","promotionType":"baseMonthlyDiscount","promotionPriceValueType":"absolute","productJson":null,"promotionCode":"","descriptiveInfoValue":"Up to 150.0 Mbps download speed. Up to 5.0 Mbps upload speed.","internetFeatures":null,"longDistance":null,"zipcode":"19962","parentExternalId":null,"productCategories":"bundles","promotionDescription":"N\/A","qualification":"N\/A","parentName":null,"effectivePrice":null,"internetSpeed":null,"channels":null,"marketingHighlights":"[]","itemExternalId":null,"capabilityMap":"{wiredDataUpSpeed=wiredDataUpSpeed, digitalCable=digitalCable, longDistancePhone=longDistancePhone, wiredDataDownSpeed=wiredDataDownSpeed, localPhone=localPhone}","productDataId":95930,"providerExternalId":"26069942","promotionExternalId":"RTS:COMCAST:1777000468","shortDesc":"N\/A","conditions":"N\/A"},{"longDescription":null,"displayBasePrice":null,"promotionAllMetaData":"[M_UP_SPEED=5 Mbps, M_DOWN_SPEED=150 Mbps, PROMO_SUMMARY=$99.99 for the first 24 months, $176.49 per month for month 25 onwards, Account=DISCONNECTED]","displayPromotionPrice":null,"baseNonRecurringPrice":0.0,"baseRecurringPrice":99.99,"descriptiveInfoDescription":null,"promotionPrice":99.99,"priceUnitType":null,"productName":"(DS_POS) HD Preferred w\/Performance Pro TP w\/Agrmt $99.99 x 24M \/ $124.99 x 12 \/ $149.99 x 12M \/ EDP (Blast $0x12) - NED  - New","metaData":null,"score":null,"productExternalId":"RTS:COMCAST:1777000470","rank":23,"descriptiveInfoType":null,"providerName":"Comcast","productType":"TV, Internet, Phone","promotionType":"baseMonthlyDiscount","promotionPriceValueType":"absolute","productJson":null,"promotionCode":"","descriptiveInfoValue":"Up to 150.0 Mbps download speed. Up to 5.0 Mbps upload speed.","internetFeatures":null,"longDistance":null,"zipcode":"19962","parentExternalId":null,"productCategories":"bundles","promotionDescription":"N\/A","qualification":"N\/A","parentName":null,"effectivePrice":null,"internetSpeed":null,"channels":null,"marketingHighlights":"[]","itemExternalId":null,"capabilityMap":"{wiredDataUpSpeed=wiredDataUpSpeed, digitalCable=digitalCable, longDistancePhone=longDistancePhone, wiredDataDownSpeed=wiredDataDownSpeed, localPhone=localPhone}","productDataId":95932,"providerExternalId":"26069942","promotionExternalId":"RTS:COMCAST:1777000470","shortDesc":"N\/A","conditions":"N\/A"},{"longDescription":null,"displayBasePrice":null,"promotionAllMetaData":"[M_UP_SPEED=5 Mbps, M_DOWN_SPEED=150 Mbps, PROMO_SUMMARY=$109.99 for the first 12 months, $176.49 per month for month 13 onwards, Account=DISCONNECTED]","displayPromotionPrice":null,"baseNonRecurringPrice":0.0,"baseRecurringPrice":109.99,"descriptiveInfoDescription":null,"promotionPrice":109.99,"priceUnitType":null,"productName":"(DS_POS) HD Preferred w\/Performance Pro TP  $109.99 x 12M \/ $134.99 x 12M \/ $159.99 x 12M \/ EDP  - NED - New","metaData":null,"score":null,"productExternalId":"RTS:COMCAST:1777000472","rank":24,"descriptiveInfoType":null,"providerName":"Comcast","productType":"TV, Internet, Phone","promotionType":"baseMonthlyDiscount","promotionPriceValueType":"absolute","productJson":null,"promotionCode":"","descriptiveInfoValue":"Up to 150.0 Mbps download speed. Up to 5.0 Mbps upload speed.","internetFeatures":null,"longDistance":null,"zipcode":"19962","parentExternalId":null,"productCategories":"bundles","promotionDescription":"N\/A","qualification":"N\/A","parentName":null,"effectivePrice":null,"internetSpeed":null,"channels":null,"marketingHighlights":"[]","itemExternalId":null,"capabilityMap":"{wiredDataUpSpeed=wiredDataUpSpeed, digitalCable=digitalCable, longDistancePhone=longDistancePhone, wiredDataDownSpeed=wiredDataDownSpeed, localPhone=localPhone}","productDataId":95934,"providerExternalId":"26069942","promotionExternalId":"RTS:COMCAST:1777000472","shortDesc":"N\/A","conditions":"N\/A"},{"longDescription":null,"displayBasePrice":null,"promotionAllMetaData":"[M_UP_SPEED=10 Mbps, M_DOWN_SPEED=250 Mbps, PROMO_SUMMARY=$129.99 for the first 24 months, $193.49 per month for month 25 onwards, Account=DISCONNECTED]","displayPromotionPrice":null,"baseNonRecurringPrice":0.0,"baseRecurringPrice":129.99,"descriptiveInfoDescription":null,"promotionPrice":129.99,"priceUnitType":null,"productName":"(DS_POS) HD Preferred Extra w\/Blast TP w\/Agrmt $129.99 x 24M \/ $154.99 x 12M\/ $179.99 x 12M \/ EDP - NED - New","metaData":null,"score":null,"productExternalId":"RTS:COMCAST:1777000474","rank":21,"descriptiveInfoType":null,"providerName":"Comcast","productType":"TV, Internet, Phone","promotionType":"baseMonthlyDiscount","promotionPriceValueType":"absolute","productJson":null,"promotionCode":"","descriptiveInfoValue":"Up to 250.0 Mbps download speed. Up to 10.0 Mbps upload speed.","internetFeatures":null,"longDistance":null,"zipcode":"19962","parentExternalId":null,"productCategories":"bundles","promotionDescription":"N\/A","qualification":"N\/A","parentName":null,"effectivePrice":null,"internetSpeed":null,"channels":null,"marketingHighlights":"[]","itemExternalId":null,"capabilityMap":"{wiredDataUpSpeed=wiredDataUpSpeed, digitalCable=digitalCable, longDistancePhone=longDistancePhone, wiredDataDownSpeed=wiredDataDownSpeed, localPhone=localPhone}","productDataId":95937,"providerExternalId":"26069942","promotionExternalId":"RTS:COMCAST:1777000474","shortDesc":"N\/A","conditions":"N\/A"},{"longDescription":null,"displayBasePrice":null,"promotionAllMetaData":"[M_UP_SPEED=10 Mbps, M_DOWN_SPEED=250 Mbps, PROMO_SUMMARY=$139.99 for the first 12 months, $193.49 per month for month 13 onwards, Account=DISCONNECTED]","displayPromotionPrice":null,"baseNonRecurringPrice":0.0,"baseRecurringPrice":139.99,"descriptiveInfoDescription":null,"promotionPrice":139.99,"priceUnitType":null,"productName":"(DS_POS) HD Preferred Extra w\/Blast TP  $139.99 x 12M \/ $164.99 x 12M \/ $189.99 x 12M \/ EDP - NED - New","metaData":null,"score":null,"productExternalId":"RTS:COMCAST:1777000475","rank":22,"descriptiveInfoType":null,"providerName":"Comcast","productType":"TV, Internet, Phone","promotionType":"baseMonthlyDiscount","promotionPriceValueType":"absolute","productJson":null,"promotionCode":"","descriptiveInfoValue":"Up to 250.0 Mbps download speed. Up to 10.0 Mbps upload speed.","internetFeatures":null,"longDistance":null,"zipcode":"19962","parentExternalId":null,"productCategories":"bundles","promotionDescription":"N\/A","qualification":"N\/A","parentName":null,"effectivePrice":null,"internetSpeed":null,"channels":null,"marketingHighlights":"[]","itemExternalId":null,"capabilityMap":"{wiredDataUpSpeed=wiredDataUpSpeed, digitalCable=digitalCable, longDistancePhone=longDistancePhone, wiredDataDownSpeed=wiredDataDownSpeed, localPhone=localPhone}","productDataId":95940,"providerExternalId":"26069942","promotionExternalId":"RTS:COMCAST:1777000475","shortDesc":"N\/A","conditions":"N\/A"},{"longDescription":null,"displayBasePrice":null,"promotionAllMetaData":"[M_UP_SPEED=10 Mbps, M_DOWN_SPEED=250 Mbps, PROMO_SUMMARY=$149.99 for the first 24 months, $221.49 per month for month 25 onwards, Account=DISCONNECTED]","displayPromotionPrice":null,"baseNonRecurringPrice":0.0,"baseRecurringPrice":149.99,"descriptiveInfoDescription":null,"promotionPrice":149.99,"priceUnitType":null,"productName":"(DS_POS) HD Premier w\/Blast TP w\/Agrmt $149.99 x 24M ($100 VA) \/ $184.99 x 12M \/ $194.99 x 12M \/ EDP - NED - New","metaData":null,"score":null,"productExternalId":"RTS:COMCAST:1777000414","rank":25,"descriptiveInfoType":null,"providerName":"Comcast","productType":"TV, Internet, Phone","promotionType":"baseMonthlyDiscount","promotionPriceValueType":"absolute","productJson":null,"promotionCode":"","descriptiveInfoValue":"Up to 250.0 Mbps download speed. Up to 10.0 Mbps upload speed.","internetFeatures":null,"longDistance":null,"zipcode":"19962","parentExternalId":null,"productCategories":"bundles","promotionDescription":"N\/A","qualification":"N\/A","parentName":null,"effectivePrice":null,"internetSpeed":null,"channels":null,"marketingHighlights":"[]","itemExternalId":null,"capabilityMap":"{wiredDataUpSpeed=wiredDataUpSpeed, digitalCable=digitalCable, longDistancePhone=longDistancePhone, wiredDataDownSpeed=wiredDataDownSpeed, localPhone=localPhone}","productDataId":95943,"providerExternalId":"26069942","promotionExternalId":"RTS:COMCAST:1777000414","shortDesc":"N\/A","conditions":"N\/A"},{"longDescription":null,"displayBasePrice":null,"promotionAllMetaData":"[M_UP_SPEED=10 Mbps, M_DOWN_SPEED=250 Mbps, PROMO_SUMMARY=$159.99 for the first 12 months, $221.49 per month for month 13 onwards, Account=DISCONNECTED]","displayPromotionPrice":null,"baseNonRecurringPrice":0.0,"baseRecurringPrice":159.99,"descriptiveInfoDescription":null,"promotionPrice":159.99,"priceUnitType":null,"productName":"(DS_POS) HD Premier w\/Blast TP  $159.99 x 12M \/ $184.99 x 12M \/ $194.99 x 12M \/ EDP - NED - New","metaData":null,"score":null,"productExternalId":"RTS:COMCAST:1777000442","rank":26,"descriptiveInfoType":null,"providerName":"Comcast","productType":"TV, Internet, Phone","promotionType":"baseMonthlyDiscount","promotionPriceValueType":"absolute","productJson":null,"promotionCode":"","descriptiveInfoValue":"Up to 250.0 Mbps download speed. Up to 10.0 Mbps upload speed.","internetFeatures":null,"longDistance":null,"zipcode":"19962","parentExternalId":null,"productCategories":"bundles","promotionDescription":"N\/A","qualification":"N\/A","parentName":null,"effectivePrice":null,"internetSpeed":null,"channels":null,"marketingHighlights":"[]","itemExternalId":null,"capabilityMap":"{wiredDataUpSpeed=wiredDataUpSpeed, digitalCable=digitalCable, longDistancePhone=longDistancePhone, wiredDataDownSpeed=wiredDataDownSpeed, localPhone=localPhone}","productDataId":95946,"providerExternalId":"26069942","promotionExternalId":"RTS:COMCAST:1777000442","shortDesc":"N\/A","conditions":"N\/A"},{"longDescription":null,"displayBasePrice":null,"promotionAllMetaData":"[M_UP_SPEED=10 Mbps, M_DOWN_SPEED=250 Mbps, PROMO_SUMMARY=$189.99 for the first 24 months, $251.49 per month for month 25 onwards, Account=DISCONNECTED]","displayPromotionPrice":null,"baseNonRecurringPrice":0.0,"baseRecurringPrice":189.99,"descriptiveInfoDescription":null,"promotionPrice":189.99,"priceUnitType":null,"productName":"(DS_POS) HD Complete w\/Blast TP w\/Agrmt $189.99 x 24M ($200 VA) $214.99 x 12M \/ $224.99 x 12M \/ EDP - NED  - New","metaData":null,"score":null,"productExternalId":"RTS:COMCAST:1777000443","rank":20,"descriptiveInfoType":null,"providerName":"Comcast","productType":"TV, Internet, Phone","promotionType":"baseMonthlyDiscount","promotionPriceValueType":"absolute","productJson":null,"promotionCode":"","descriptiveInfoValue":"Up to 250.0 Mbps download speed. Up to 10.0 Mbps upload speed.","internetFeatures":null,"longDistance":null,"zipcode":"19962","parentExternalId":null,"productCategories":"bundles","promotionDescription":"N\/A","qualification":"N\/A","parentName":null,"effectivePrice":null,"internetSpeed":null,"channels":null,"marketingHighlights":"[]","itemExternalId":null,"capabilityMap":"{wiredDataUpSpeed=wiredDataUpSpeed, digitalCable=digitalCable, longDistancePhone=longDistancePhone, wiredDataDownSpeed=wiredDataDownSpeed, localPhone=localPhone}","productDataId":95949,"providerExternalId":"26069942","promotionExternalId":"RTS:COMCAST:1777000443","shortDesc":"N\/A","conditions":"N\/A"},{"longDescription":null,"displayBasePrice":null,"promotionAllMetaData":"[M_UP_SPEED=5 Mbps, M_DOWN_SPEED=150 Mbps, PROMO_SUMMARY=$79.99 for the first 24 months, $140.99 per month for month 25 onwards, Account=DISCONNECTED, LATINO_PKG_INCL]","displayPromotionPrice":null,"baseNonRecurringPrice":0.0,"baseRecurringPrice":79.99,"descriptiveInfoDescription":null,"promotionPrice":79.99,"priceUnitType":null,"productName":"(DS_POS)  Economy Plus Latino w\/Performance Pro TP w\/Agrmt $79.99 x 24M \/ $99.99 x 12M \/ $124.99 x 12M \/ EDP (Blast $0x12) - NED  - New","metaData":null,"score":null,"productExternalId":"RTS:COMCAST:1777000476","rank":14,"descriptiveInfoType":null,"providerName":"Comcast","productType":"TV, Internet, Phone","promotionType":"baseMonthlyDiscount","promotionPriceValueType":"absolute","productJson":null,"promotionCode":"","descriptiveInfoValue":"Up to 150.0 Mbps download speed. Up to 5.0 Mbps upload speed.","internetFeatures":null,"longDistance":null,"zipcode":"19962","parentExternalId":null,"productCategories":"bundles","promotionDescription":"N\/A","qualification":"N\/A","parentName":null,"effectivePrice":null,"internetSpeed":null,"channels":null,"marketingHighlights":"[]","itemExternalId":null,"capabilityMap":"{wiredDataUpSpeed=wiredDataUpSpeed, digitalCable=digitalCable, longDistancePhone=longDistancePhone, wiredDataDownSpeed=wiredDataDownSpeed, localPhone=localPhone}","productDataId":95952,"providerExternalId":"26069942","promotionExternalId":"RTS:COMCAST:1777000476","shortDesc":"N\/A","conditions":"N\/A"},{"longDescription":null,"displayBasePrice":null,"promotionAllMetaData":"[M_UP_SPEED=5 Mbps, M_DOWN_SPEED=150 Mbps, PROMO_SUMMARY=$89.99 for the first 12 months, $140.99 per month for month 13 onwards, Account=DISCONNECTED, LATINO_PKG_INCL]","displayPromotionPrice":null,"baseNonRecurringPrice":0.0,"baseRecurringPrice":89.99,"descriptiveInfoDescription":null,"promotionPrice":89.99,"priceUnitType":null,"productName":"(DS_POS) Economy Plus Latino w\/Performance Pro TP  $89.99 x 12M \/ $114.99 x 12M \/ EDP - NED  - New","metaData":null,"score":null,"productExternalId":"RTS:COMCAST:1777000477","rank":15,"descriptiveInfoType":null,"providerName":"Comcast","productType":"TV, Internet, Phone","promotionType":"baseMonthlyDiscount","promotionPriceValueType":"absolute","productJson":null,"promotionCode":"","descriptiveInfoValue":"Up to 150.0 Mbps download speed. Up to 5.0 Mbps upload speed.","internetFeatures":null,"longDistance":null,"zipcode":"19962","parentExternalId":null,"productCategories":"bundles","promotionDescription":"N\/A","qualification":"N\/A","parentName":null,"effectivePrice":null,"internetSpeed":null,"channels":null,"marketingHighlights":"[]","itemExternalId":null,"capabilityMap":"{wiredDataUpSpeed=wiredDataUpSpeed, digitalCable=digitalCable, longDistancePhone=longDistancePhone, wiredDataDownSpeed=wiredDataDownSpeed, localPhone=localPhone}","productDataId":95955,"providerExternalId":"26069942","promotionExternalId":"RTS:COMCAST:1777000477","shortDesc":"N\/A","conditions":"N\/A"},{"longDescription":null,"displayBasePrice":null,"promotionAllMetaData":"[CONN_SPEED=250, M_UP_SPEED=10, M_DOWN_SPEED=250, NUM_CHANNELS=260, M_NUM_CHANNEL_AVAIL=260+ Channels, PROMO_SUMMARY=$199.99 for the first 12 months, $224.99 per month for months 13-24,$246.49 per month for month 25 onwards, Account=DISCONNECTED]","displayPromotionPrice":null,"baseNonRecurringPrice":0.0,"baseRecurringPrice":199.99,"descriptiveInfoDescription":null,"promotionPrice":199.99,"priceUnitType":null,"productName":"HD Complete XF Triple Play","metaData":null,"noofChannels":"260","score":null,"productExternalId":"RTS:COMCAST:1777000013","rank":19,"descriptiveInfoType":null,"providerName":"Comcast","productType":"TV, Internet, Phone","promotionType":"unspecifiedType","promotionPriceValueType":"unspecifiedPriceValueType","productJson":null,"promotionCode":"","descriptiveInfoValue":"Up to 250.0 Mbps download speed. Up to 10.0 Mbps upload speed. Over 260 digital channels. 3 popular phone features.","internetFeatures":null,"longDistance":null,"zipcode":"19962","parentExternalId":null,"productCategories":"bundles","promotionDescription":"N\/A","qualification":"N\/A","parentName":null,"effectivePrice":null,"internetSpeed":null,"channels":null,"marketingHighlights":"[XFINITY® Internet - Blast!®, Unlimited Nationwide Calling, ? On Demand, No minimum term agreement required., Digital Complete TV with HD-DVR or X1 DVR service included - Over 260 channels, including HBO®, Starz®, Cinemax®, Showtime®, The Movie Channel®, and Sports Entertainment Package, including NFL RedZone®., XFINITY On Demand - Catch up on the latest episodes of TV\u2019s hottest shows and even watch entire past seasons with XFINITY On Demand., XFINITY Internet - Download speeds up to 250 Mbps. The most WiFi coverage for your home. and upload speeds up to 10 Mbps, XFINITY X1 will change the way you experience TV. X1 delivers the simplest, fastest, most complete way to access all your entertainment on all your screens., XFINITY Voice - More ways to connect with friends and family in more places around the world., The XFINITY Customer Commitment: two hour appointment windows seven days a week, 24\/7 support and self-service tools, and an automatic $20 credit if we're ever late., Includes Wireless Gateway, up to 3 Additional Outlets, and X1 DVR! A DVR that does it all. Record and watch up to six shows.]","itemExternalId":null,"capabilityMap":"{wiredDataUpSpeed=wiredDataUpSpeed, digitalCable=digitalCable, longDistancePhone=longDistancePhone, wiredDataDownSpeed=wiredDataDownSpeed, localPhone=localPhone}","productDataId":95969,"providerExternalId":"26069942","promotionExternalId":"RTS:COMCAST:1777000013","shortDesc":"N\/A","conditions":"Offer ends 04\/16\/18. Restrictions apply. Not available in all areas. New residential customers only. Limited to HD Complete XF Triple Play with Digital Premier, HD-DVR or AnyRoom DVR service, up to 3 Additional Outlets, Wireless Gateway, Blast! Internet and Xfinity Voice Unlimited service. Equipment, installation, taxes and fees, including regulatory recovery fees, Broadcast TV Fee (up to $8\/mo.), Regional Sports Fee (up to $6.75\/mo.) and other applicable charges extra, and subject to change during and after the promo. After first 12 months, monthly service charge for HD Complete XF Triple Play increases to $224.99 per month for months 13-24. After promo, or if any service is cancelled or downgraded, regular rates apply (subject to change). May not be combined with other offers. TV: Limited Basic service subscription required to receive other levels of service. On Demand selections subject to charge indicated at time of purchase. Not all programming available in all areas. Internet: Actual speeds vary and are not guaranteed. Voice: If there is a power outage or network issue, calling, including calls to 911, may be unavailable. 30-Day Money-Back Guarantee applies to one month's recurring service charge and standard installation up to $500. Call for restrictions and complete details. ©2018 Comcast. All rights reserved.","connectionSpeed":"250"},{"longDescription":null,"displayBasePrice":null,"promotionAllMetaData":"[CONN_SPEED=150, M_UP_SPEED=5, M_DOWN_SPEED=150, CONTRACT_TERM=2.0, M_CONTRACT_TERM=2 Year Contract Term, NUM_CHANNELS=260, M_NUM_CHANNEL_AVAIL=260+ Channels, PROMO_SUMMARY=$109.99 for the first 12 months, $129.99 per month for months 13-24,$149.99 per month for months 25-36,$187.99 per month for month 37 onwards with 2-year agreement, Account=DISCONNECTED]","displayPromotionPrice":null,"baseNonRecurringPrice":0.0,"baseRecurringPrice":109.99,"descriptiveInfoDescription":null,"promotionPrice":109.99,"priceUnitType":null,"productName":"Premier XF Double Play","metaData":null,"noofChannels":"260","score":null,"productExternalId":"RTS:COMCAST:1776000004","rank":40,"descriptiveInfoType":null,"providerName":"Comcast","productType":"TV, Internet","promotionType":"unspecifiedType","promotionPriceValueType":"unspecifiedPriceValueType","productJson":null,"promotionCode":"","descriptiveInfoValue":"Up to 150.0 Mbps download speed. Up to 5.0 Mbps upload speed. Over 260 digital channels. 2-year agreement required.","internetFeatures":null,"longDistance":null,"zipcode":"19962","parentExternalId":null,"productCategories":"bundles","promotionDescription":"N\/A","qualification":"N\/A","parentName":null,"effectivePrice":null,"internetSpeed":null,"channels":null,"marketingHighlights":"[XFINITY® Internet - Performance Pro, ? On Demand, 2-year minimum term agreement required. Early termination fee applies if all XFINITY services, except for XFINITY Mobile, are cancelled during the agreement term., Digital Premier TV - Over 260 channels including your favorite live sports networks, plus HBO®, Starz®, Showtime®, The Movie Channel® and Cinemax®, so you can enjoy blockbuster hits and original series., XFINITY On Demand - Catch up on the latest episodes of TV\u2019s hottest shows and even watch entire past seasons with XFINITY On Demand., XFINITY Internet - Download speeds up to 150 Mbps. The most WiFi coverage for your home. and upload speeds up to 5 Mbps, XFINITY X1 will change the way you experience TV. X1 delivers the simplest, fastest, most complete way to access all your entertainment on all your screens., Only XFINITY gives you more to stream on any screen with the XFINITY Stream app, included with XFINITY TV service. Download the XFINITY Stream app or watch online at xfinity.com\/stream. and upload speeds up to 5 Mbps, The XFINITY Customer Commitment: two hour appointment windows seven days a week, 24\/7 support and self-service tools, and an automatic $20 credit if we're ever late., X1 DVR - A DVR that does it all. Record and watch up to six shows. Add X1 DVR with HD Technology Fee for only $19.95 more per month!]","itemExternalId":null,"capabilityMap":"{wiredDataUpSpeed=wiredDataUpSpeed, digitalCable=digitalCable, wiredDataDownSpeed=wiredDataDownSpeed}","contractTerm":"2.0","productDataId":95971,"providerExternalId":"26069942","promotionExternalId":"RTS:COMCAST:1776000004","shortDesc":"N\/A","conditions":"Offer ends 04\/16\/18. Restrictions apply. Not available in all areas. New residential customers only. Limited to Premier XF Double Play with Digital Premier and Performance Pro Internet service. 2-year minimum term agreement required. Early termination fee applies if all Xfinity services (except for Xfinity Mobile) are cancelled during the agreement term. Equipment, installation, taxes and fees, Broadcast TV Fee (up to $8\/mo.), Regional Sports Fee (up to $6.75\/mo.) and other applicable charges extra, and subject to change during and after the promo. Additional outlet service fee applies for multi-room viewing. After first 12 months, the monthly service charge for Premier XF Double Play increases to $129.99 per month for months 13-24. After promo, or if any service is cancelled or downgraded, regular rates apply (subject to change). Service limited to a single outlet. May not be combined with other offers. TV: Limited Basic service subscription required to receive other levels of service. On Demand selections subject to charge indicated at time of purchase. Not all programming available in all areas. Internet: Actual speeds vary and are not guaranteed. 30-Day Money-Back Guarantee applies to one month\u2019s recurring service charge and standard installation up to $500. Call for restrictions and complete details. ©2018 Comcast. All rights reserved.","connectionSpeed":"150"},{"longDescription":null,"displayBasePrice":null,"promotionAllMetaData":"[CONN_SPEED=150, M_UP_SPEED=5, M_DOWN_SPEED=150, NUM_CHANNELS=260, M_NUM_CHANNEL_AVAIL=260+ Channels, PROMO_SUMMARY=$119.99 for the first 12 months, $139.99 per month for months 13-24,$182.99 per month for month 25 onwards, Account=DISCONNECTED]","displayPromotionPrice":null,"baseNonRecurringPrice":0.0,"baseRecurringPrice":119.99,"descriptiveInfoDescription":null,"promotionPrice":119.99,"priceUnitType":null,"productName":"Premier XF Double Play","metaData":null,"noofChannels":"260","score":null,"productExternalId":"RTS:COMCAST:1776000005","rank":41,"descriptiveInfoType":null,"providerName":"Comcast","productType":"TV, Internet","promotionType":"unspecifiedType","promotionPriceValueType":"unspecifiedPriceValueType","productJson":null,"promotionCode":"","descriptiveInfoValue":"Up to 150.0 Mbps download speed. Up to 5.0 Mbps upload speed. Over 260 digital channels.","internetFeatures":null,"longDistance":null,"zipcode":"19962","parentExternalId":null,"productCategories":"bundles","promotionDescription":"N\/A","qualification":"N\/A","parentName":null,"effectivePrice":null,"internetSpeed":null,"channels":null,"marketingHighlights":"[XFINITY® Internet - Performance Pro, ? On Demand, No minimum term agreement required., Digital Premier TV - Over 260 channels including your favorite live sports networks, plus HBO®, Starz®, Showtime®, The Movie Channel® and Cinemax®, so you can enjoy blockbuster hits and original series., XFINITY On Demand - Catch up on the latest episodes of TV\u2019s hottest shows and even watch entire past seasons with XFINITY On Demand., XFINITY Internet - Download speeds up to 150 Mbps. The most WiFi coverage for your home. and upload speeds up to 5 Mbps, XFINITY X1 will change the way you experience TV. X1 delivers the simplest, fastest, most complete way to access all your entertainment on all your screens., Only XFINITY gives you more to stream on any screen with the XFINITY Stream app, included with XFINITY TV service. Download the XFINITY Stream app or watch online at xfinity.com\/stream. and upload speeds up to 5 Mbps, The XFINITY Customer Commitment: two hour appointment windows seven days a week, 24\/7 support and self-service tools, and an automatic $20 credit if we're ever late., X1 DVR - A DVR that does it all. Record and watch up to six shows. Add X1 DVR with HD Technology Fee for only $19.95 more per month!]","itemExternalId":null,"capabilityMap":"{wiredDataUpSpeed=wiredDataUpSpeed, digitalCable=digitalCable, wiredDataDownSpeed=wiredDataDownSpeed}","productDataId":95975,"providerExternalId":"26069942","promotionExternalId":"RTS:COMCAST:1776000005","shortDesc":"N\/A","conditions":"Offer ends 04\/16\/18. Restrictions apply. Not available in all areas. New residential customers only. Limited to Premier XF Double Play with Digital Premier and Performance Pro Internet service. Equipment, installation, taxes and fees, Broadcast TV Fee (up to $8\/mo.), Regional Sports Fee (up to $6.75\/mo.) and other applicable charges extra, and subject to change during and after the promo. Additional outlet service fee applies for multi-room viewing. After first 12 months, the monthly service charge for Premier XF Double Play increases to $139.99 per month for months 13-24. After promo, or if any service is cancelled or downgraded, regular rates apply (subject to change). Service limited to a single outlet. May not be combined with other offers. TV: Limited Basic service subscription required to receive other levels of service. On Demand selections subject to charge indicated at time of purchase. Not all programming available in all areas. Internet: Actual speeds vary and are not guaranteed. 30-Day Money-Back Guarantee applies to one month\u2019s recurring service charge and standard installation up to $500. Call for restrictions and complete details. ©2018 Comcast. All rights reserved.","connectionSpeed":"150"},{"longDescription":null,"displayBasePrice":null,"promotionAllMetaData":"[PROMO_SUMMARY=$79.99 for the first 12 months, $133.8 per month for month 13 onwards, Account=DISCONNECTED]","displayPromotionPrice":null,"baseNonRecurringPrice":0.0,"baseRecurringPrice":79.99,"descriptiveInfoDescription":null,"promotionPrice":79.99,"priceUnitType":null,"productName":"Dig Preferred & XV Unlimited DP $79.99 x 12M \/ $104.99 x 12M \/ EDP - NED - New","metaData":null,"score":null,"productExternalId":"RTS:COMCAST:1776000294","rank":6,"descriptiveInfoType":null,"providerName":"Comcast","productType":"TV, Phone","promotionType":"baseMonthlyDiscount","promotionPriceValueType":"absolute","productJson":null,"promotionCode":"","descriptiveInfoValue":null,"internetFeatures":null,"longDistance":null,"zipcode":"19962","parentExternalId":null,"productCategories":"bundles","promotionDescription":"N\/A","qualification":"N\/A","parentName":null,"effectivePrice":null,"internetSpeed":null,"channels":null,"marketingHighlights":"[]","itemExternalId":null,"capabilityMap":"{digitalCable=digitalCable, longDistancePhone=longDistancePhone, localPhone=localPhone}","productDataId":95976,"providerExternalId":"26069942","promotionExternalId":"RTS:COMCAST:1776000294","shortDesc":"N\/A","conditions":"N\/A"},{"longDescription":null,"displayBasePrice":null,"promotionAllMetaData":"[M_UP_SPEED=5 Mbps, M_DOWN_SPEED=60 Mbps, PROMO_SUMMARY=$49.99 for the first 12 months, $109.9 per month for month 13 onwards, Account=DISCONNECTED]","displayPromotionPrice":null,"baseNonRecurringPrice":0.0,"baseRecurringPrice":49.99,"descriptiveInfoDescription":null,"promotionPrice":49.99,"priceUnitType":null,"productName":"(DS_POS) XV Unlimited & XI Performance DP $49.99 x 12M \/ $74.99  x 12M \/ EDP - NED - New","metaData":null,"score":null,"productExternalId":"RTS:COMCAST:1776000295","rank":35,"descriptiveInfoType":null,"providerName":"Comcast","productType":"Internet, Phone","promotionType":"baseMonthlyDiscount","promotionPriceValueType":"absolute","productJson":null,"promotionCode":"","descriptiveInfoValue":"Up to 60.0 Mbps download speed. Up to 5.0 Mbps upload speed.","internetFeatures":null,"longDistance":null,"zipcode":"19962","parentExternalId":null,"productCategories":"bundles","promotionDescription":"N\/A","qualification":"N\/A","parentName":null,"effectivePrice":null,"internetSpeed":null,"channels":null,"marketingHighlights":"[]","itemExternalId":null,"capabilityMap":"{wiredDataUpSpeed=wiredDataUpSpeed, longDistancePhone=longDistancePhone, wiredDataDownSpeed=wiredDataDownSpeed, localPhone=localPhone}","productDataId":95978,"providerExternalId":"26069942","promotionExternalId":"RTS:COMCAST:1776000295","shortDesc":"N\/A","conditions":"N\/A"},{"longDescription":null,"displayBasePrice":null,"promotionAllMetaData":"[CONN_SPEED=150, M_UP_SPEED=5, M_DOWN_SPEED=150, CONTRACT_TERM=2.0, M_CONTRACT_TERM=2 Year Contract Term, NUM_CHANNELS=220, M_NUM_CHANNEL_AVAIL=220+ Channels, PROMO_SUMMARY=$89.99 for the first 12 months, $109.99 per month for months 13-24,$144.95 per month for month 25 onwards with 2-year agreement, Account=DISCONNECTED]","displayPromotionPrice":null,"baseNonRecurringPrice":0.0,"baseRecurringPrice":89.99,"descriptiveInfoDescription":null,"promotionPrice":89.99,"priceUnitType":null,"productName":"Preferred XF Double Play","metaData":null,"noofChannels":"220","score":null,"productExternalId":"RTS:COMCAST:1776000006","rank":38,"descriptiveInfoType":null,"providerName":"Comcast","productType":"TV, Internet","promotionType":"unspecifiedType","promotionPriceValueType":"unspecifiedPriceValueType","productJson":null,"promotionCode":"","descriptiveInfoValue":"Up to 150.0 Mbps download speed. Up to 5.0 Mbps upload speed. Over 220 digital channels. 2-year agreement required.","internetFeatures":null,"longDistance":null,"zipcode":"19962","parentExternalId":null,"productCategories":"bundles","promotionDescription":"N\/A","qualification":"N\/A","parentName":null,"effectivePrice":null,"internetSpeed":null,"channels":null,"marketingHighlights":"[XFINITY® Internet - Performance Pro, ? On Demand, 2-year minimum term agreement required. Early termination fee applies if all XFINITY services, except for XFINITY Mobile, are cancelled during the agreement term., Digital Preferred TV - Over 220 channels including Starz Encore®, plus your favorite live sports channels like NFL Network, NHL Network, MLB Network and NBA TV., XFINITY On Demand - Catch up on the latest episodes of TV\u2019s hottest shows and even watch entire past seasons with XFINITY On Demand., XFINITY Internet - Download speeds up to 150 Mbps. The most WiFi coverage for your home. and upload speeds up to 5 Mbps, XFINITY X1 will change the way you experience TV. X1 delivers the simplest, fastest, most complete way to access all your entertainment on all your screens., Only XFINITY gives you more to stream on any screen with the XFINITY Stream app, included with XFINITY TV service. Download the XFINITY Stream app or watch online at xfinity.com\/stream. and upload speeds up to 5 Mbps, The XFINITY Customer Commitment: two hour appointment windows seven days a week, 24\/7 support and self-service tools, and an automatic $20 credit if we're ever late., Showtime included for 24 months! Additional Premiums only $5 each per month for 6 months! Limited to Starz., X1 DVR - A DVR that does it all. Record and watch up to six shows. Add X1 DVR with HD Technology Fee for only $19.95 more per month!]","itemExternalId":null,"capabilityMap":"{wiredDataUpSpeed=wiredDataUpSpeed, digitalCable=digitalCable, wiredDataDownSpeed=wiredDataDownSpeed}","contractTerm":"2.0","productDataId":95979,"providerExternalId":"26069942","promotionExternalId":"RTS:COMCAST:1776000006","shortDesc":"N\/A","conditions":"Offer ends 04\/16\/18. Restrictions apply. Not available in all areas. New residential customers only. Limited to Preferred XF Double Play with Digital Preferred and Performance Pro Internet service. 2-year minimum term agreement required. Early termination fee applies if all Xfinity services (except for Xfinity Mobile) are cancelled during the agreement term. Equipment, installation, taxes and fees, Broadcast TV Fee (up to $8\/mo.), Regional Sports Fee (up to $6.75\/mo.) and other applicable charges extra, and subject to change during and after the promo. Additional outlet service fee applies for multi-room viewing. After first 12 months, the monthly service charge for Preferred XF Double Play increases to $109.99 per month for months 13-24. Pick a Premium offer not available to customers who previously subscribed to the selected premium or to any packages which include the selected premium. After 6 months, the regular monthly service charge for the selected premium applies. After 24 months, regular rates apply to Showtime. After promo, or if any service is cancelled or downgraded, regular rates apply. Comcast's monthly service charge for Starz is $12.00 (subject to change). Service limited to a single outlet. May not be combined with other offers. TV: Limited Basic service subscription required to receive other levels of service. On Demand selections subject to charge indicated at time of purchase. Not all programming available in all areas. Internet: Actual speeds vary and are not guaranteed. 30-Day Money-Back Guarantee applies to one month\u2019s recurring service charge and standard installation up to $500. Call for restrictions and complete details. ©2018 Comcast. All rights reserved.","connectionSpeed":"150"},{"longDescription":null,"displayBasePrice":null,"promotionAllMetaData":"[CONN_SPEED=150, M_UP_SPEED=5, M_DOWN_SPEED=150, NUM_CHANNELS=220, M_NUM_CHANNEL_AVAIL=220+ Channels, PROMO_SUMMARY=$99.99 for the first 12 months, $119.99 per month for months 13-24,$144.95 per month for month 25 onwards, Account=DISCONNECTED]","displayPromotionPrice":null,"baseNonRecurringPrice":0.0,"baseRecurringPrice":99.99,"descriptiveInfoDescription":null,"promotionPrice":99.99,"priceUnitType":null,"productName":"Preferred XF Double Play","metaData":null,"noofChannels":"220","score":null,"productExternalId":"RTS:COMCAST:1776000007","rank":39,"descriptiveInfoType":null,"providerName":"Comcast","productType":"TV, Internet","promotionType":"unspecifiedType","promotionPriceValueType":"unspecifiedPriceValueType","productJson":null,"promotionCode":"","descriptiveInfoValue":"Up to 150.0 Mbps download speed. Up to 5.0 Mbps upload speed. Over 220 digital channels.","internetFeatures":null,"longDistance":null,"zipcode":"19962","parentExternalId":null,"productCategories":"bundles","promotionDescription":"N\/A","qualification":"N\/A","parentName":null,"effectivePrice":null,"internetSpeed":null,"channels":null,"marketingHighlights":"[XFINITY® Internet - Performance Pro, ? On Demand, No minimum term agreement required., Digital Preferred TV - Over 220 channels including Starz Encore®, plus your favorite live sports channels like NFL Network, NHL Network, MLB Network and NBA TV., XFINITY On Demand - Catch up on the latest episodes of TV\u2019s hottest shows and even watch entire past seasons with XFINITY On Demand., XFINITY Internet - Download speeds up to 150 Mbps. The most WiFi coverage for your home. and upload speeds up to 5 Mbps, XFINITY X1 will change the way you experience TV. X1 delivers the simplest, fastest, most complete way to access all your entertainment on all your screens., Only XFINITY gives you more to stream on any screen with the XFINITY Stream app, included with XFINITY TV service. Download the XFINITY Stream app or watch online at xfinity.com\/stream. and upload speeds up to 5 Mbps, The XFINITY Customer Commitment: two hour appointment windows seven days a week, 24\/7 support and self-service tools, and an automatic $20 credit if we're ever late., Showtime included for 12 months! Additional Premiums only $5 each per month for 6 months! Limited to Starz., X1 DVR - A DVR that does it all. Record and watch up to six shows. Add X1 DVR with HD Technology Fee for only $19.95 more per month!]","itemExternalId":null,"capabilityMap":"{wiredDataUpSpeed=wiredDataUpSpeed, digitalCable=digitalCable, wiredDataDownSpeed=wiredDataDownSpeed}","productDataId":95981,"providerExternalId":"26069942","promotionExternalId":"RTS:COMCAST:1776000007","shortDesc":"N\/A","conditions":"Offer ends 04\/16\/18. Restrictions apply. Not available in all areas. New residential customers only. Limited to Preferred XF Double Play with Digital Preferred and Performance Pro Internet service. Equipment, installation, taxes and fees, Broadcast TV Fee (up to $8\/mo.), Regional Sports Fee (up to $6.75\/mo.) and other applicable charges extra, and subject to change during and after the promo. Additional outlet service fee applies for multi-room viewing. Pick a Premium offer not available to customers who previously subscribed to the selected premium or to any packages which include the selected premium. After 6 months, the regular monthly service charge for the selected premium applies. After promo, or if any service is cancelled or downgraded, regular rates apply. Comcast's monthly service charge for Preferred XF Double Play is $149.85 and Showtime and Starz is $12.00 each (subject to change). Service limited to a single outlet. May not be combined with other offers. TV: Limited Basic service subscription required to receive other levels of service. On Demand selections subject to charge indicated at time of purchase. Not all programming available in all areas. Internet: Actual speeds vary and are not guaranteed. 30-Day Money-Back Guarantee applies to one month\u2019s recurring service charge and standard installation up to $500. Call for restrictions and complete details. ©2018 Comcast. All rights reserved.","connectionSpeed":"150"},{"longDescription":null,"displayBasePrice":null,"promotionAllMetaData":"[CONN_SPEED=60, M_UP_SPEED=5, M_DOWN_SPEED=60, CONTRACT_TERM=2.0, M_CONTRACT_TERM=2 Year Contract Term, NUM_CHANNELS=140, M_NUM_CHANNEL_AVAIL=140+ Channels, PROMO_SUMMARY=$79.99 for the first 12 months, $99.99 per month for months 13-24,$131.9 per month for month 25 onwards with 2-year agreement, Account=DISCONNECTED]","displayPromotionPrice":null,"baseNonRecurringPrice":0.0,"baseRecurringPrice":79.99,"descriptiveInfoDescription":null,"promotionPrice":79.99,"priceUnitType":null,"productName":"Digital Starter and Performance Internet","metaData":null,"noofChannels":"140","score":null,"productExternalId":"RTS:COMCAST:9676100012","rank":10,"descriptiveInfoType":null,"providerName":"Comcast","productType":"TV, Internet","promotionType":"unspecifiedType","promotionPriceValueType":"unspecifiedPriceValueType","productJson":null,"promotionCode":"","descriptiveInfoValue":"Up to 60.0 Mbps download speed. Up to 5.0 Mbps upload speed. Over 140 digital channels. 2-year agreement required.","internetFeatures":null,"longDistance":null,"zipcode":"19962","parentExternalId":null,"productCategories":"bundles","promotionDescription":"N\/A","qualification":"N\/A","parentName":null,"effectivePrice":null,"internetSpeed":null,"channels":null,"marketingHighlights":"[XFINITY® Internet - Performance, ? On Demand, 2-year minimum term agreement required. Early termination fee applies if all XFINITY services, except for XFINITY Mobile, are cancelled during the agreement term., Digital Starter TV - Over 140 channels, including the top broadcast networks and popular channels like FX, Nickelodeon, HGTV and ESPN., XFINITY On Demand - Catch up on the latest episodes of TV\u2019s hottest shows and even watch entire past seasons with XFINITY On Demand., XFINITY Internet - Download speeds up to 60 Mbps. The most WiFi coverage for your home. and upload speeds up to 5 Mbps, XFINITY X1 will change the way you experience TV. X1 delivers the simplest, fastest, most complete way to access all your entertainment on all your screens., Only XFINITY gives you more to stream on any screen with the XFINITY Stream app, included with XFINITY TV service. Download the XFINITY Stream app or watch online at xfinity.com\/stream. and upload speeds up to 5 Mbps, The XFINITY Customer Commitment: two hour appointment windows seven days a week, 24\/7 support and self-service tools, and an automatic $20 credit if we're ever late., Pick a Premium for only $5 more per month for 6 months! Limited to Showtime and Starz., X1 DVR - A DVR that does it all. Record and watch up to six shows. Add X1 DVR with HD Technology Fee for only $19.95 more per month!]","itemExternalId":null,"capabilityMap":"{wiredDataUpSpeed=wiredDataUpSpeed, digitalCable=digitalCable, wiredDataDownSpeed=wiredDataDownSpeed}","contractTerm":"2.0","productDataId":95983,"providerExternalId":"26069942","promotionExternalId":"RTS:COMCAST:9676100012","shortDesc":"N\/A","conditions":"Offer ends 04\/16\/18. Restrictions apply. Not available in all areas. New residential customers only. Limited to Digital Starter and Performance Internet service. 2-year minimum term agreement required. Early termination fee applies if all Xfinity services (except for Xfinity Mobile) are cancelled during the agreement term. Equipment, installation, taxes and fees, Broadcast TV Fee (up to $8\/mo.), Regional Sports Fee (up to $6.75\/mo.) and other applicable charges extra, and subject to change during and after the promo. Additional outlet service fee applies for multi-room viewing. After first 12 months, the monthly service charge for Digital Starter and Performance Internet increases to $99.99 for months 13-24. Pick a Premium offer not available to customers who previously subscribed to the selected premium or to any packages which include the selected premium. After 6 months, the regular monthly service charge for the selected premium applies. After promo, or if any service is cancelled or downgraded, regular rates apply. Comcast\u2019s monthly service charge for Showtime and Starz  is $12.00 each (subject to change). Service limited to a single outlet. May not be combined with other offers. TV: Limited Basic service subscription required to receive other levels of service. On Demand selections subject to charge indicated at time of purchase. Not all programming available in all areas. Internet: Actual speeds vary and are not guaranteed. 30-Day Money-Back Guarantee applies to one month\u2019s recurring service charge and standard installation up to $500. Call for restrictions and complete details. ©2018 Comcast. All rights reserved.","connectionSpeed":"60"},{"longDescription":null,"displayBasePrice":null,"promotionAllMetaData":"[CONN_SPEED=60, M_UP_SPEED=5, M_DOWN_SPEED=60, NUM_CHANNELS=140, M_NUM_CHANNEL_AVAIL=140+ Channels, PROMO_SUMMARY=$89.99 for the first 12 months, $114.99 per month for months 13-24,$131.9 per month for month 25 onwards, Account=DISCONNECTED]","displayPromotionPrice":null,"baseNonRecurringPrice":0.0,"baseRecurringPrice":89.99,"descriptiveInfoDescription":null,"promotionPrice":89.99,"priceUnitType":null,"productName":"Digital Starter and Performance Internet","metaData":null,"noofChannels":"140","score":null,"productExternalId":"RTS:COMCAST:9676100011","rank":9,"descriptiveInfoType":null,"providerName":"Comcast","productType":"TV, Internet","promotionType":"unspecifiedType","promotionPriceValueType":"unspecifiedPriceValueType","productJson":null,"promotionCode":"","descriptiveInfoValue":"Up to 60.0 Mbps download speed. Up to 5.0 Mbps upload speed. Over 140 digital channels.","internetFeatures":null,"longDistance":null,"zipcode":"19962","parentExternalId":null,"productCategories":"bundles","promotionDescription":"N\/A","qualification":"N\/A","parentName":null,"effectivePrice":null,"internetSpeed":null,"channels":null,"marketingHighlights":"[XFINITY® Internet - Performance, ? On Demand, No minimum term agreement required., Digital Starter TV - Over 140 channels, including the top broadcast networks and popular channels like FX, Nickelodeon, HGTV and ESPN., XFINITY On Demand - Catch up on the latest episodes of TV\u2019s hottest shows and even watch entire past seasons with XFINITY On Demand., XFINITY Internet - Download speeds up to 60 Mbps. The most WiFi coverage for your home. and upload speeds up to 5 Mbps, XFINITY X1 will change the way you experience TV. X1 delivers the simplest, fastest, most complete way to access all your entertainment on all your screens., Only XFINITY gives you more to stream on any screen with the XFINITY Stream app, included with XFINITY TV service. Download the XFINITY Stream app or watch online at xfinity.com\/stream. and upload speeds up to 5 Mbps, The XFINITY Customer Commitment: two hour appointment windows seven days a week, 24\/7 support and self-service tools, and an automatic $20 credit if we're ever late., Pick a Premium for only $5 more per month for 6 months! Limited to Showtime and Starz., X1 DVR - A DVR that does it all. Record and watch up to six shows. Add X1 DVR with HD Technology Fee for only $19.95 more per month!]","itemExternalId":null,"capabilityMap":"{wiredDataUpSpeed=wiredDataUpSpeed, digitalCable=digitalCable, wiredDataDownSpeed=wiredDataDownSpeed}","productDataId":95984,"providerExternalId":"26069942","promotionExternalId":"RTS:COMCAST:9676100011","shortDesc":"N\/A","conditions":"Offer ends 04\/16\/18. Restrictions apply. Not available in all areas. New residential customers only. Limited to Digital Starter and Performance Internet service. Equipment, installation, taxes and fees, Broadcast TV Fee (up to $8\/mo.), Regional Sports Fee (up to $6.75\/mo.) and other applicable charges extra, and subject to change during and after the promo. Additional outlet service fee applies for multi-room viewing. Pick a Premium offer not available to customers who previously subscribed to the selected premium or to any packages which include the selected premium. After 6 months, the regular monthly service charge for the selected premium applies. After promo, or if any service is cancelled or downgraded, regular rates apply. Comcast\u2019s monthly service charge for Performance Internet is $61.95, Showtime and Starz is $12.00 each, Digital Starter, ranges based on area, from $69.60 to $71.90 (subject to change). Service limited to a single outlet. May not be combined with other offers. TV: Limited Basic service subscription required to receive other levels of service. On Demand selections subject to charge indicated at time of purchase. Not all programming available in all areas. Internet: Actual speeds vary and are not guaranteed. 30-Day Money-Back Guarantee applies to one month\u2019s recurring service charge and standard installation up to $500. Call for restrictions and complete details. ©2018 Comcast. All rights reserved.","connectionSpeed":"60"},{"longDescription":null,"displayBasePrice":null,"promotionAllMetaData":"[M_UP_SPEED=5 Mbps, M_DOWN_SPEED=150 Mbps, PROMO_SUMMARY=$59.99 for the first 12 months, $74.99 per month for months 13-24,$92.95 per month for month 25 onwards, Account=DISCONNECTED]","displayPromotionPrice":null,"baseNonRecurringPrice":0.0,"baseRecurringPrice":59.99,"descriptiveInfoDescription":null,"promotionPrice":59.99,"priceUnitType":null,"productName":"Internet Pro Plus w\/HBO\/Streampix $59.99 x 12M \/ $74.99 x 12M \/ EDP - NED - New - Etail","metaData":null,"score":null,"productExternalId":"RTS:COMCAST:1776000333","rank":28,"descriptiveInfoType":null,"providerName":"Comcast","productType":"TV, Internet","promotionType":"baseMonthlyDiscount","promotionPriceValueType":"absolute","productJson":null,"promotionCode":"","descriptiveInfoValue":"Up to 150.0 Mbps download speed. Up to 5.0 Mbps upload speed.","internetFeatures":null,"longDistance":null,"zipcode":"19962","parentExternalId":null,"productCategories":"bundles","promotionDescription":"N\/A","qualification":"N\/A","parentName":null,"effectivePrice":null,"internetSpeed":null,"channels":null,"marketingHighlights":"[]","itemExternalId":null,"capabilityMap":"{wiredDataUpSpeed=wiredDataUpSpeed, digitalCable=digitalCable, wiredDataDownSpeed=wiredDataDownSpeed}","productDataId":95985,"providerExternalId":"26069942","promotionExternalId":"RTS:COMCAST:1776000333","shortDesc":"N\/A","conditions":"N\/A"},{"longDescription":null,"displayBasePrice":null,"promotionAllMetaData":"[M_UP_SPEED=5 Mbps, M_DOWN_SPEED=60 Mbps, PROMO_SUMMARY=$39.99 for the first 12 months, $116.83 per month for month 13 onwards, Account=DISCONNECTED]","displayPromotionPrice":null,"baseNonRecurringPrice":0.0,"baseRecurringPrice":39.99,"descriptiveInfoDescription":null,"promotionPrice":39.99,"priceUnitType":null,"productName":"XI Performance and Limited Basic w\/Streampix $39.99 x 12M \/ $59.99 x 12M \/ EDP - NED - New - Etail","metaData":null,"score":null,"productExternalId":"RTS:COMCAST:1776000267","rank":33,"descriptiveInfoType":null,"providerName":"Comcast","productType":"TV, Internet","promotionType":"baseMonthlyDiscount","promotionPriceValueType":"absolute","productJson":null,"promotionCode":"","descriptiveInfoValue":"Up to 60.0 Mbps download speed. Up to 5.0 Mbps upload speed.","internetFeatures":null,"longDistance":null,"zipcode":"19962","parentExternalId":null,"productCategories":"bundles","promotionDescription":"N\/A","qualification":"N\/A","parentName":null,"effectivePrice":null,"internetSpeed":null,"channels":null,"marketingHighlights":"[]","itemExternalId":null,"capabilityMap":"{wiredDataUpSpeed=wiredDataUpSpeed, digitalCable=digitalCable, wiredDataDownSpeed=wiredDataDownSpeed}","productDataId":95986,"providerExternalId":"26069942","promotionExternalId":"RTS:COMCAST:1776000267","shortDesc":"N\/A","conditions":"N\/A"},{"longDescription":null,"displayBasePrice":null,"promotionAllMetaData":"[M_UP_SPEED=5 Mbps, M_DOWN_SPEED=150 Mbps, PROMO_SUMMARY=$54.99 for the first 12 months, $74.99 per month for months 13-24,$89.95 per month for month 25 onwards, Account=DISCONNECTED]","displayPromotionPrice":null,"baseNonRecurringPrice":0.0,"baseRecurringPrice":54.99,"descriptiveInfoDescription":null,"promotionPrice":54.99,"priceUnitType":null,"productName":"Internet Pro Plus w\/Showtime\/Streampix $54.99 x 12M \/ $74.99 x 12M \/ EDP - NED - New - Etail","metaData":null,"score":null,"productExternalId":"RTS:COMCAST:1776000331","rank":29,"descriptiveInfoType":null,"providerName":"Comcast","productType":"TV, Internet","promotionType":"baseMonthlyDiscount","promotionPriceValueType":"absolute","productJson":null,"promotionCode":"","descriptiveInfoValue":"Up to 150.0 Mbps download speed. Up to 5.0 Mbps upload speed.","internetFeatures":null,"longDistance":null,"zipcode":"19962","parentExternalId":null,"productCategories":"bundles","promotionDescription":"N\/A","qualification":"N\/A","parentName":null,"effectivePrice":null,"internetSpeed":null,"channels":null,"marketingHighlights":"[]","itemExternalId":null,"capabilityMap":"{wiredDataUpSpeed=wiredDataUpSpeed, digitalCable=digitalCable, wiredDataDownSpeed=wiredDataDownSpeed}","productDataId":95987,"providerExternalId":"26069942","promotionExternalId":"RTS:COMCAST:1776000331","shortDesc":"N\/A","conditions":"N\/A"},{"longDescription":null,"displayBasePrice":null,"promotionAllMetaData":"[CONN_SPEED=150, M_UP_SPEED=5, M_DOWN_SPEED=150, CONTRACT_TERM=2.0, M_CONTRACT_TERM=2 Year Contract Term, NUM_CHANNELS=280, M_NUM_CHANNEL_AVAIL=280+ Channels, PROMO_SUMMARY=$89.99 for the first 12 months, $109.99 per month for months 13-24,$167.8 per month for month 25 onwards with 2-year agreementLATINO_PKG_INCL, Account=DISCONNECTED, LATINO_PKG_INCL]","displayPromotionPrice":null,"baseNonRecurringPrice":0.0,"baseRecurringPrice":89.99,"descriptiveInfoDescription":null,"promotionPrice":89.99,"priceUnitType":null,"productName":"Preferred Latino Double Play","metaData":null,"noofChannels":"280","score":null,"productExternalId":"RTS:COMCAST:1776000002","rank":37,"descriptiveInfoType":null,"providerName":"Comcast","productType":"TV, Internet","promotionType":"unspecifiedType","promotionPriceValueType":"unspecifiedPriceValueType","productJson":null,"promotionCode":"","descriptiveInfoValue":"Up to 150.0 Mbps download speed. Up to 5.0 Mbps upload speed. Over 280 digital channels. 2-year agreement required.","internetFeatures":null,"longDistance":null,"zipcode":"19962","parentExternalId":null,"productCategories":"bundles","promotionDescription":"N\/A","qualification":"N\/A","parentName":null,"effectivePrice":null,"internetSpeed":null,"channels":null,"marketingHighlights":"[XFINITY® Internet - Performance Pro, ? On Demand, 2-year minimum term agreement required. Early termination fee applies if all XFINITY services, except for XFINITY Mobile, are cancelled during the agreement term., Preferred Latino TV - Over 280 channels including 60+ Spanish-language and 220+ English-language channels, with favorite Spanish programming like Telemundo, Discovery en Español, beIN Sports ñ, Univision Deportes and more!, XFINITY On Demand - Catch up on the latest episodes of TV\u2019s hottest shows and even watch entire past seasons with XFINITY On Demand., XFINITY Internet - Download speeds up to 150 Mbps. The most WiFi coverage for your home. and upload speeds up to 5 Mbps, XFINITY X1 will change the way you experience TV. X1 delivers the simplest, fastest, most complete way to access all your entertainment on all your screens., Only XFINITY gives you more to stream on any screen with the XFINITY Stream app, included with XFINITY TV service. Download the XFINITY Stream app or watch online at xfinity.com\/stream. and upload speeds up to 5 Mbps, The XFINITY Customer Commitment: two hour appointment windows seven days a week, 24\/7 support and self-service tools, and an automatic $20 credit if we're ever late., Pick a Premium for only $5 more per month for 6 months! Limited to Showtime and Starz., X1 DVR - A DVR that does it all. Record and watch up to six shows. Add X1 DVR with HD Technology Fee for only $19.95 more per month!]","itemExternalId":null,"capabilityMap":"{wiredDataUpSpeed=wiredDataUpSpeed, digitalCable=digitalCable, wiredDataDownSpeed=wiredDataDownSpeed}","contractTerm":"2.0","productDataId":95988,"providerExternalId":"26069942","promotionExternalId":"RTS:COMCAST:1776000002","shortDesc":"N\/A","conditions":"Offer ends 04\/16\/18. Restrictions apply. Not available in all areas. New residential customers only. Limited to Preferred Latino Double Play with Digital Preferred, TV Latino, and Performance Pro Internet service. 2-year minimum term agreement required. Early termination fee applies if all Xfinity services (except for Xfinity Mobile) are cancelled during the agreement term. Equipment, installation, taxes and fees, Broadcast TV Fee (up to $8\/mo.), Regional Sports Fee (up to $6.75\/mo.) and other applicable charges extra, and subject to change during and after the promo. Additional outlet service fee applies for multi-room viewing. After first 12 months, the monthly service charge for Preferred Latino Double Play increases to $109.99 per month for months 13-24. Pick a Premium offer not available to customers who previously subscribed to the selected premium or to any packages which include the selected premium. After 6 months, the regular monthly service charge for the selected premium applies. After promo, or if any service is cancelled or downgraded, regular rates apply. Comcast's monthly service charge for Showtime and Starz is $12.00 each (subject to change). Service limited to a single outlet. May not be combined with other offers. TV: Limited Basic service subscription required to receive other levels of service. On Demand selections subject to charge indicated at time of purchase. Not all programming available in all areas. Internet: Actual speeds vary and are not guaranteed. 30-Day Money-Back Guarantee applies to one month\u2019s recurring service charge and standard installation up to $500. Call for restrictions and complete details. ©2018 Comcast. All rights reserved.","connectionSpeed":"150"},{"longDescription":null,"displayBasePrice":null,"promotionAllMetaData":"[CONN_SPEED=60, M_UP_SPEED=5, M_DOWN_SPEED=60, CONTRACT_TERM=2.0, M_CONTRACT_TERM=2 Year Contract Term, NUM_CHANNELS=200, M_NUM_CHANNEL_AVAIL=200+ Channels, PROMO_SUMMARY=$79.99 for the first 12 months, $99.99 per month for months 13-24,$131.9 per month for month 25 onwards with 2-year agreementLATINO_PKG_INCL, Account=DISCONNECTED, LATINO_PKG_INCL]","displayPromotionPrice":null,"baseNonRecurringPrice":0.0,"baseRecurringPrice":79.99,"descriptiveInfoDescription":null,"promotionPrice":79.99,"priceUnitType":null,"productName":"Starter Latino Double Play","metaData":null,"noofChannels":"200","score":null,"productExternalId":"RTS:COMCAST:9776100668","rank":43,"descriptiveInfoType":null,"providerName":"Comcast","productType":"TV, Internet","promotionType":"unspecifiedType","promotionPriceValueType":"unspecifiedPriceValueType","productJson":null,"promotionCode":"","descriptiveInfoValue":"Up to 60.0 Mbps download speed. Up to 5.0 Mbps upload speed. Over 200 digital channels. 2-year agreement required.","internetFeatures":null,"longDistance":null,"zipcode":"19962","parentExternalId":null,"productCategories":"bundles","promotionDescription":"N\/A","qualification":"N\/A","parentName":null,"effectivePrice":null,"internetSpeed":null,"channels":null,"marketingHighlights":"[XFINITY® Internet - Performance, ? On Demand, 2-year minimum term agreement required. Early termination fee applies if all XFINITY services, except for XFINITY Mobile, are cancelled during the agreement term., Starter Latino TV - Over 200 channels including 60+ Spanish-language and 140+ English-language channels, with favorite Spanish programming like Telemundo, Discovery en Español, beIN Sports ñ, Univision Deportes and more!, XFINITY On Demand - Catch up on the latest episodes of TV\u2019s hottest shows and even watch entire past seasons with XFINITY On Demand., XFINITY Internet - Download speeds up to 60 Mbps. The most WiFi coverage for your home. and upload speeds up to 5 Mbps, XFINITY X1 will change the way you experience TV. X1 delivers the simplest, fastest, most complete way to access all your entertainment on all your screens., Only XFINITY gives you more to stream on any screen with the XFINITY Stream app, included with XFINITY TV service. Download the XFINITY Stream app or watch online at xfinity.com\/stream. and upload speeds up to 5 Mbps, The XFINITY Customer Commitment: two hour appointment windows seven days a week, 24\/7 support and self-service tools, and an automatic $20 credit if we're ever late., Pick a Premium for only $5 more per month for 6 months! Limited to Showtime and Starz., X1 DVR - A DVR that does it all. Record and watch up to six shows. Add X1 DVR with HD Technology Fee for only $19.95 more per month!]","itemExternalId":null,"capabilityMap":"{wiredDataUpSpeed=wiredDataUpSpeed, digitalCable=digitalCable, wiredDataDownSpeed=wiredDataDownSpeed}","contractTerm":"2.0","productDataId":95989,"providerExternalId":"26069942","promotionExternalId":"RTS:COMCAST:9776100668","shortDesc":"N\/A","conditions":"Offer ends 04\/16\/18. Restrictions apply. Not available in all areas. New residential customers only. Limited to Starter Latino Double Play with Starter Latino TV and Performance Internet service. 2-year minimum term agreement required. Early termination fee applies if all Xfinity services (except for Xfinity Mobile) are cancelled during the agreement term. Equipment, installation, taxes and fees, Broadcast TV Fee (up to $8\/mo.), Regional Sports Fee (up to $6.75\/mo.) and other applicable charges extra, and subject to change during and after the promo. Additional outlet service fee applies for multi-room viewing. After first 12 months, monthly service charge for Starter Latino Double Play increases to $99.99 per month for months 13-24. Pick a Premium offer not available to customers who previously subscribed to the selected premium or to any packages which include the selected premium. After 6 months, the regular monthly service charge for the selected premium applies. After promo, or if any service is cancelled or downgraded, regular rates apply. Comcast\u2019s monthly service charge for Showtime and Starz is $12.00 each (subject to change). Service limited to a single outlet. May not be combined with other offers. TV: Limited Basic service subscription required to receive other levels of service. On Demand selections subject to charge indicated at time of purchase. Not all programming available in all areas. Internet: Actual speeds vary and are not guaranteed. 30-Day Money-Back Guarantee applies to one month\u2019s recurring service charge and standard installation up to $500. Call for restrictions and complete details. ©2018 Comcast. All rights reserved.","connectionSpeed":"60"},{"longDescription":null,"displayBasePrice":null,"promotionAllMetaData":"[CONN_SPEED=60, M_UP_SPEED=5, M_DOWN_SPEED=60, NUM_CHANNELS=200, M_NUM_CHANNEL_AVAIL=200+ Channels, PROMO_SUMMARY=$89.99 for the first 12 months, $109.99 per month for months 13-24,$131.9 per month for month 25 onwards LATINO_PKG_INCL, Account=DISCONNECTED, LATINO_PKG_INCL]","displayPromotionPrice":null,"baseNonRecurringPrice":0.0,"baseRecurringPrice":89.99,"descriptiveInfoDescription":null,"promotionPrice":89.99,"priceUnitType":null,"productName":"Starter Latino Double Play","metaData":null,"noofChannels":"200","score":null,"productExternalId":"RTS:COMCAST:9776100059","rank":42,"descriptiveInfoType":null,"providerName":"Comcast","productType":"TV, Internet","promotionType":"unspecifiedType","promotionPriceValueType":"unspecifiedPriceValueType","productJson":null,"promotionCode":"","descriptiveInfoValue":"Up to 60.0 Mbps download speed. Up to 5.0 Mbps upload speed. Over 200 digital channels.","internetFeatures":null,"longDistance":null,"zipcode":"19962","parentExternalId":null,"productCategories":"bundles","promotionDescription":"N\/A","qualification":"N\/A","parentName":null,"effectivePrice":null,"internetSpeed":null,"channels":null,"marketingHighlights":"[XFINITY® Internet - Performance, ? On Demand, No minimum term agreement required., XFINITY WiFi - Stay connected while on the go with access to millions of WiFi hotspots nationwide., Starter Latino TV - Over 200 channels including 60+ Spanish-language and 140+ English-language channels, with favorite Spanish programming like Telemundo, Discovery en Español, beIN Sports ñ, Univision Deportes and more!, XFINITY On Demand - Catch up on the latest episodes of TV\u2019s hottest shows and even watch entire past seasons with XFINITY On Demand., XFINITY Internet - Download speeds up to 60 Mbps. The most WiFi coverage for your home. and upload speeds up to 5 Mbps, XFINITY X1 will change the way you experience TV. X1 delivers the simplest, fastest, most complete way to access all your entertainment on all your screens., Only XFINITY gives you more to stream on any screen with the XFINITY Stream app, included with XFINITY TV service. Download the XFINITY Stream app or watch online at xfinity.com\/stream. and upload speeds up to 5 Mbps, The XFINITY Customer Commitment: two hour appointment windows seven days a week, 24\/7 support and self-service tools, and an automatic $20 credit if we're ever late., Pick a Premium for only $5 more per month for 6 months! Limited to Showtime and Starz., X1 DVR - A DVR that does it all. Record and watch up to six shows. Add X1 DVR with HD Technology Fee for only $19.95 more per month!]","itemExternalId":null,"capabilityMap":"{wiredDataUpSpeed=wiredDataUpSpeed, digitalCable=digitalCable, wiredDataDownSpeed=wiredDataDownSpeed}","productDataId":95990,"providerExternalId":"26069942","promotionExternalId":"RTS:COMCAST:9776100059","shortDesc":"N\/A","conditions":"Offer ends 04\/16\/18. Restrictions apply. Not available in all areas. New residential customers only. Limited to Starter Latino Double Play with Starter Latino TV and Performance Internet service. Equipment, installation, taxes and fees, Broadcast TV Fee (up to $8\/mo.), Regional Sports Fee (up to $6.75\/mo.) and other applicable charges extra, and subject to change during and after the promo. Additional outlet service fee applies for multi-room viewing. After first 12 months, the monthly service charge for Starter Latino Double Play increases to $109.99 per month for months 13-24. Pick a Premium offer not available to customers who previously subscribed to the selected premium or to any packages which include the selected premium. After 6 months, the regular monthly service charge for the selected premium applies. After promo, or if any service is cancelled or downgraded, regular rates apply. Comcast\u2019s monthly service charge for Showtime and Starz is $12.00 each (subject to change). Service limited to a single outlet. May not be combined with other offers. TV: Limited Basic service subscription required to receive other levels of service. On Demand selections subject to charge indicated at time of purchase. Not all programming available in all areas. Internet: Actual speeds vary and are not guaranteed. Xfinity hotspots included with Xfinity Internet Performance (and above). Does not apply to Performance Starter and below.  Available in select areas. Requires compatible WiFi enabled device. 30-Day Money-Back Guarantee applies to one month\u2019s recurring service charge and standard installation up to $500. Call for restrictions and complete details. ©2018 Comcast. All rights reserved.","connectionSpeed":"60"},{"longDescription":null,"displayBasePrice":null,"promotionAllMetaData":"[CONN_SPEED=60, M_UP_SPEED=5, M_DOWN_SPEED=60, CONTRACT_TERM=2.0, M_CONTRACT_TERM=2 Year Contract Term, NUM_CHANNELS=190, M_NUM_CHANNEL_AVAIL=190+ Channels, PROMO_SUMMARY=$69.99 for the first 12 months, $89.99 per month for months 13-24,$111.9 per month for month 25 onwards with 2-year agreementLATINO_PKG_INCL, Account=DISCONNECTED, LATINO_PKG_INCL]","displayPromotionPrice":null,"baseNonRecurringPrice":0.0,"baseRecurringPrice":69.99,"descriptiveInfoDescription":null,"promotionPrice":69.99,"priceUnitType":null,"productName":"Economy Plus Latino Double Play","metaData":null,"noofChannels":"190","score":null,"productExternalId":"RTS:COMCAST:9776100202","rank":13,"descriptiveInfoType":null,"providerName":"Comcast","productType":"TV, Internet","promotionType":"unspecifiedType","promotionPriceValueType":"unspecifiedPriceValueType","productJson":null,"promotionCode":"","descriptiveInfoValue":"Up to 60.0 Mbps download speed. Up to 5.0 Mbps upload speed. Over 190 digital channels. 2-year agreement required.","internetFeatures":null,"longDistance":null,"zipcode":"19962","parentExternalId":null,"productCategories":"bundles","promotionDescription":"N\/A","qualification":"N\/A","parentName":null,"effectivePrice":null,"internetSpeed":null,"channels":null,"marketingHighlights":"[XFINITY® Internet - Performance, ? On Demand, 2-year minimum term agreement required. Early termination fee applies if all XFINITY services, except for XFINITY Mobile, are cancelled during the agreement term., XFINITY WiFi - Stay connected while on the go with access to millions of WiFi hotspots nationwide., Economy Plus Latino TV - Over 190 channels; 60+ Spanish-language channels and 130+ English-language channels, including your favorite Spanish programming like Telemundo, Discovery en Español, beIN Sports ñ, Univision Deportes and many more!, XFINITY On Demand - Catch up on the latest episodes of TV\u2019s hottest shows and even watch entire past seasons with XFINITY On Demand., XFINITY Internet - Download speeds up to 60 Mbps. The most WiFi coverage for your home. and upload speeds up to 5 Mbps, XFINITY X1 will change the way you experience TV. X1 delivers the simplest, fastest, most complete way to access all your entertainment on all your screens., Only XFINITY gives you more to stream on any screen with the XFINITY Stream app, included with XFINITY TV service. Download the XFINITY Stream app or watch online at xfinity.com\/stream. and upload speeds up to 5 Mbps, The XFINITY Customer Commitment: two hour appointment windows seven days a week, 24\/7 support and self-service tools, and an automatic $20 credit if we're ever late., Pick a Premium for only $5 more per month for 6 months! Limited to Showtime and Starz., X1 DVR - A DVR that does it all. Record and watch up to six shows. Add X1 DVR with HD Technology Fee for only $19.95 more per month!]","itemExternalId":null,"capabilityMap":"{wiredDataUpSpeed=wiredDataUpSpeed, digitalCable=digitalCable, wiredDataDownSpeed=wiredDataDownSpeed}","contractTerm":"2.0","productDataId":95991,"providerExternalId":"26069942","promotionExternalId":"RTS:COMCAST:9776100202","shortDesc":"N\/A","conditions":"Offer ends 04\/16\/18. Restrictions apply. Not available in all areas. New residential customers only. Limited to Economy Plus Latino Double Play with Economy Plus Latino TV and Performance Internet service. 2-year minimum term agreement required. Early termination fee applies if all Xfinity services (except for Xfinity Mobile) are cancelled during the agreement term. Equipment, installation, taxes and fees, Broadcast TV Fee (up to $8\/mo.), Regional Sports Fee (up to $6.75\/mo.) and other applicable charges extra, and subject to change during and after the promo. Additional outlet service fee applies for multi-room viewing. After first 12 months, monthly service charge for Economy Plus Latino Double Play increases to $89.99 per month for months 13-24. Pick a Premium offer not available to customers who previously subscribed to the selected premium or to any packages which include the selected premium. After 6 months, the regular monthly service charge for the selected premium applies. After promo, or if any service is cancelled or downgraded, regular rates apply. Comcast\u2019s monthly service charge for Showtime and Starz is $12.00 each (subject to change). Service limited to a single outlet. May not be combined with other offers. TV: Limited Basic service subscription required to receive other levels of service. On Demand selections subject to charge indicated at time of purchase. Not all programming available in all areas. Internet: Actual speeds vary and are not guaranteed. Xfinity hotspots included with Xfinity Internet Performance (and above). Does not apply to Performance Starter and below.  Available in select areas. Requires compatible WiFi enabled device. 30-Day Money-Back Guarantee applies to one month\u2019s recurring service charge and standard installation up to $500. Call for restrictions and complete details. ©2018 Comcast. All rights reserved.","connectionSpeed":"60"},{"longDescription":null,"displayBasePrice":null,"promotionAllMetaData":"[CONN_SPEED=60, M_UP_SPEED=5, M_DOWN_SPEED=60, NUM_CHANNELS=190, M_NUM_CHANNEL_AVAIL=190+ Channels, PROMO_SUMMARY=$79.99 for the first 12 months, $99.99 per month for months 13-24,$111.9 per month for month 25 onwards LATINO_PKG_INCL, Account=DISCONNECTED, LATINO_PKG_INCL]","displayPromotionPrice":null,"baseNonRecurringPrice":0.0,"baseRecurringPrice":79.99,"descriptiveInfoDescription":null,"promotionPrice":79.99,"priceUnitType":null,"productName":"Economy Plus Latino Double Play","metaData":null,"noofChannels":"190","score":null,"productExternalId":"RTS:COMCAST:9776100062","rank":12,"descriptiveInfoType":null,"providerName":"Comcast","productType":"TV, Internet","promotionType":"unspecifiedType","promotionPriceValueType":"unspecifiedPriceValueType","productJson":null,"promotionCode":"","descriptiveInfoValue":"Up to 60.0 Mbps download speed. Up to 5.0 Mbps upload speed. Over 190 digital channels.","internetFeatures":null,"longDistance":null,"zipcode":"19962","parentExternalId":null,"productCategories":"bundles","promotionDescription":"N\/A","qualification":"N\/A","parentName":null,"effectivePrice":null,"internetSpeed":null,"channels":null,"marketingHighlights":"[XFINITY® Internet - Performance, ? On Demand, No minimum term agreement required., XFINITY WiFi - Stay connected while on the go with access to millions of WiFi hotspots nationwide., Economy Plus Latino TV - Over 190 channels; 60+ Spanish-language channels and 130+ English-language channels, including your favorite Spanish programming like Telemundo, Discovery en Español, beIN Sports ñ, Univision Deportes and many more!, XFINITY On Demand - Catch up on the latest episodes of TV\u2019s hottest shows and even watch entire past seasons with XFINITY On Demand., XFINITY Internet - Download speeds up to 60 Mbps. The most WiFi coverage for your home. and upload speeds up to 5 Mbps, XFINITY X1 will change the way you experience TV. X1 delivers the simplest, fastest, most complete way to access all your entertainment on all your screens., Only XFINITY gives you more to stream on any screen with the XFINITY Stream app, included with XFINITY TV service. Download the XFINITY Stream app or watch online at xfinity.com\/stream. and upload speeds up to 5 Mbps, The XFINITY Customer Commitment: two hour appointment windows seven days a week, 24\/7 support and self-service tools, and an automatic $20 credit if we're ever late., Pick a Premium for only $5 more per month for 6 months! Limited to Showtime and Starz., X1 DVR - A DVR that does it all. Record and watch up to six shows. Add X1 DVR with HD Technology Fee for only $19.95 more per month!]","itemExternalId":null,"capabilityMap":"{wiredDataUpSpeed=wiredDataUpSpeed, digitalCable=digitalCable, wiredDataDownSpeed=wiredDataDownSpeed}","productDataId":95992,"providerExternalId":"26069942","promotionExternalId":"RTS:COMCAST:9776100062","shortDesc":"N\/A","conditions":"Offer ends 04\/16\/18. Restrictions apply. Not available in all areas. New residential customers only. Limited to Economy Plus Latino Double Play with Economy Plus Latino TV and Performance Internet service. Equipment, installation, taxes and fees, Broadcast TV Fee (up to $8\/mo.), Regional Sports Fee (up to $6.75\/mo.) and other applicable charges extra, and subject to change during and after the promo. Additional outlet service fee applies for multi-room viewing. After first 12 months, the monthly service charge for Economy Plus Latino Double Play increases to $99.99 per month for months 13-24. Pick a Premium offer not available to customers who previously subscribed to the selected premium or to any packages which include the selected premium. After 6 months, the regular monthly service charge for the selected premium applies. After promo, or if any service is cancelled or downgraded, regular rates apply. Comcast\u2019s monthly service charge for Showtime and Starz is $12.00 each (subject to change). Service limited to a single outlet. May not be combined with other offers. TV: Limited Basic service subscription required to receive other levels of service. On Demand selections subject to charge indicated at time of purchase. Not all programming available in all areas. Internet: Actual speeds vary and are not guaranteed. Xfinity hotspots included with Xfinity Internet Performance (and above). Does not apply to Performance Starter and below.  Available in select areas. Requires compatible WiFi enabled device. 30-Day Money-Back Guarantee applies to one month\u2019s recurring service charge and standard installation up to $500. Call for restrictions and complete details. ©2018 Comcast. All rights reserved.","connectionSpeed":"60"}];
+</script>

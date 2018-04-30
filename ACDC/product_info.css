@@ -1,0 +1,1468 @@
+#right > p{margin-left:58px;height:115px;margin-top:5px;}
+.pagination{pading-left:37%;}
+/* .savings.ng-binding{margin-left:8px;} */
+.savings.ng-binding > span{margin-left:3px;}
+#asyncProviderStatus{
+	height:57px;
+	 display: inline-block;
+  vertical-align: middle;
+  -webkit-transform: translateZ(0);
+  transform: translateZ(0);
+  box-shadow: 0 0 1px rgba(0, 0, 0, 0);
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-transition-duration: 0.3s;
+  transition-duration: 0.3s;
+  -webkit-transition-property: transform;
+  transition-property: transform;
+  -webkit-transition-timing-function: ease-out;
+  transition-timing-function: ease-out;
+}
+#asyncProviderStatus:hover, #asyncProviderStatus:focus, #asyncProviderStatus:active{-webkit-transform: translateY(-8px);transform: translateY(-8px);}
+.strikeThruPrice {
+	font-size: 2em;font-weight: bold;line-height: normal;
+}
+.right_blk #priceParagraph .strikeThruPrice span {
+    -display: inline-flex;
+}
+#serviceTypeId{font-weight:bold;font-size:14px;}
+.compareLeftCont {
+	float: left;
+	color: #a7a7a7;
+	font-size: 16px;
+	font-weight: bold;
+	margin: 0px 0px 0px 10px!important;
+}
+
+select, select.serviceType {
+	background: rgb(237, 239, 239)
+		url("../../common/images/select-dropdown.png") no-repeat scroll right
+		center;
+	width: 100%;
+}
+#wrapper #Container > .container {
+	margin: 0 auto;
+    max-width: 1180px;
+    min-height: 800px;
+    padding: 15px 0 0;
+    overflow: hidden;
+    width: 100%;
+}
+
+.phoneOnlyCTAMoreDetails{color: #81bd41 !important;font-weight: bold;width: 100%;font-size: 24px;padding: 6px;}
+	.phoneOnlyCTAMoreDetails span{color: #595959;font-size: 0.5em;font-weight: bold;display:block;text-transform: none;}
+.asyncProviderDetails img {
+	margin: 0 auto;
+    max-height: 100%;
+    max-width: 100%;
+}
+
+.resultsChannelLink a {
+	padding: 3px 2px 2px 19px;
+}
+
+.leftRow {
+	float: left;
+	margin-left: 12px;
+	margin-right: 12px;
+	width: 60%;
+}
+
+.rightRow {
+	float: right;
+	width: 40%;
+}
+
+select {
+	-moz-appearance: none !important;
+	background-color: #fafafa;
+	background-image:
+		url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZlcnNpb249IjEuMSIgeD0iMTJweCIgeT0iMHB4IiB3aWR0aD0iMjRweCIgaGVpZ2h0PSIzcHgiIHZpZXdCb3g9IjAgMCA2IDMiIGVuYWJsZS1iYWNrZ3JvdW5kPSJuZXcgMCAwIDYgMyIgeG1sOnNwYWNlPSJwcmVzZXJ2ZSI+PHBvbHlnb24gcG9pbnRzPSI1Ljk5MiwwIDIuOTkyLDMgLTAuMDA4LDAgIi8+PC9zdmc+");
+	background-position: 100% center;
+	background-repeat: no-repeat;
+	border-color: #ccc;
+	border-radius: 0;
+	border-style: solid;
+	border-width: 1px;
+	color: rgba(0, 0, 0, 0.75);
+	font-family: inherit;
+	font-size: 0.875rem;
+	height: 2.3125rem;
+	line-height: normal;
+	padding: 0.5rem;
+}
+
+.serviceType {
+	background: #f0f0f0 none repeat scroll 0 0;
+	border-radius: 4px;
+	color: #036e9c;
+	font-size: 16px;
+	height: 30px;
+	padding: 3px;
+	font-weight:bold;
+}
+
+.compareRightCont {
+	float: left;
+	margin-left: 10px;
+	width: 150px;
+}
+
+#asyncproviderListWrap {
+	border: 3px solid #e3e4e4;
+	border-radius: 3px;
+	height: auto;
+	margin: 0 auto;
+	padding: 5px;
+	width: 96%;
+	clear: both;
+}
+
+.zip-area-wrap {
+	background-color: #f7f7f7; border: 1px solid #f3f3f3; border-radius: 5px; display: block; float: left; font-weight: bold;
+	height: auto; margin: 0; padding: 10px; position: relative; font-size: 14px; width:25%; color: #565759;
+}
+#asyncProvidersList {
+    float: left; overflow: hidden; padding-left: 10px; width: 75% !important;
+}
+#asyncProvidersListItems{
+	height:60px;
+	margin-top: 2px;
+    -overflow: hidden;
+}
+body .zip-area-wrap input[value*="Change Address"] {
+	background-color: #f58025; border: medium none; border-radius: 4px; color: #fff; display: block; font-size: 11px; padding: 4px 5px; height: auto; width: auto; line-height: 13px;
+}
+
+#asyncProvidersHeading {
+	background: transparent none repeat scroll 0 0;
+	color: #006e9e;
+	font-size: 14px;
+	font-weight: bold;
+	-padding: 3px 10px;
+	border-radius: 5px;
+	margin: 0;
+}
+
+.comparePlaneCont {
+	height: 41px;
+	margin: 0 auto;
+    width: 96%;
+}
+
+.savings {
+	font-size: 12px;
+}
+
+#asyncProviderStatus li {
+	border: 3px solid #ccc;
+	border-radius: 5px;
+	box-shadow: none;
+	height: 60px;
+	margin: 1px;
+	position: relative;
+	text-align: center;
+	transform: translateZ(0px);
+	transition-duration: 0.3s;
+	transition-property: transform;
+	vertical-align: top;
+	width: 85px;
+}
+
+.asyncProviderDetails {
+	border: 3px solid rgb(204, 204, 204);
+	border-radius: 4px;
+	float: left;
+	margin: 2px;
+	text-align: center;
+}
+
+h3.GuidedNavigationTitle {
+	border-radius: 8px;
+	box-shadow: none;
+	font-size: 18px;
+	margin: -21px 0 0 0;
+	padding: 0 7px;
+	width: auto;
+	cursor: pointer;
+}
+
+h3.GuidedNavigationTitle>span {
+	font-weight: bold !important;
+}
+
+h3.GuidedNavigationTitle>.clearFilterLnk {
+	text-decoration: none;
+	font-size: 16px;
+	display: none;
+}
+
+#displayProducts ul.navbar-nav {
+    display: table-cell !important;
+}
+#displayProducts ul.navbar-nav > li {
+    display: table-cell !important;
+}
+#resultscontainer.container {
+	display: table;
+	padding: 0px;
+	top: 0px;
+	left: 0px;
+	height: auto;
+	margin: 20px auto;
+	width: 100% !important;
+	border: 3px solid #e3e4e4;
+	border-radius: 3px;
+}
+
+/* Product Info Content Css */
+.RecordTitle {
+	width: auto;
+}
+
+h2.RecordName, .RecordNameEG a {
+	color: #204195;
+	font-size: 16px;
+	font-weight: 600;
+	margin: 0;
+	overflow: visible;
+	padding: 8px 0;
+	white-space: normal;
+	width: auto;
+}
+
+.specials-image-AC {
+	margin: 0;
+	position: absolute;
+	width: 60px;
+	z-index: 1034;
+	display: block;
+	max-height: 60px;
+	max-width: 250px;
+	overflow: hidden;
+	left: 455px;
+	text-align: center;
+	top: 3px;
+	float: inherit;
+	height: auto;
+}
+
+.RecordName a, .RecordName a:hover {
+	color: #333;
+	line-height: 1.4;
+}
+
+
+#recordPromoEndDate {
+	color: #f58025;
+	font-size: 12px;
+	font-weight: bold;
+	text-align: center;
+	text-transform: uppercase;
+	margin-top:7px;
+}
+
+.compareBtnDiv {
+	height: 60px;
+	margin: 5px 11px 30px 0;
+	overflow: hidden;
+	width: 100%;
+}
+
+#comparebtnDown, .comparebtn {
+	background: rgb(0, 110, 158) none repeat scroll 0 0;
+	border: 1px solid rgb(0, 110, 158);
+	border-radius: 5px;
+	color: #fff;
+	cursor: pointer;
+	float: right;
+	font-size: 24px;
+	font-weight: bold;
+	height: 55px;
+	line-height: 55px;
+	margin: 0;
+	padding: 0;
+	text-align: center;
+	text-decoration: none;
+	text-shadow: 0 0 3px rgba(255, 255, 255, 0.7);
+	width: 193px;
+}
+
+.MoreDetails {
+	float: right;
+}
+
+.resultsChannelLink {
+	background: #fff url("../../common/images/channel-lineup.png") no-repeat
+		scroll 5px center;
+	font-weight: bold;
+	font-size:11px;
+	padding: 2px;
+	float: left;
+	margin-left:111px;
+}
+
+#MoreDetails {
+	bottom: 1px;
+	left: 5px;
+	position: absolute;
+}
+
+.marketHigh {
+	display: list-item;
+}
+
+.dropdown, .dropup {
+	padding: 7px !important;
+	position: relative !important;
+}
+
+.btn {
+	background: #e3e4e4;
+	font-weight: bold !important;
+	border: 1px solid #cfd0d0 !important;
+}
+
+.dropdown-menu li {
+	display: table;
+	border-bottom: 1px dotted #ececec;
+	margin-left: 10px;
+	padding: 5px;
+	color: #224493;
+}
+
+.RecordName {
+	clear: both;
+	color: #43b4d4;
+	font-size: 18px;
+	font-weight: bold;
+	padding: 10px 0;
+}
+
+.recordDetls {
+	font-size: 14px;
+	padding: 10px 0;
+}
+
+.offerEnds {
+	color: #fe9a2e;
+	font-size: 13px;
+	font-weight: bold;
+	height: 30px;
+	padding-top: 10px;
+	text-align: center;
+}
+
+hr {
+	background: #ddd none repeat scroll 0 0;
+	border: medium none;
+	clear: both;
+	color: #ddd;
+	float: none;
+	height: 1px;
+	margin: 0 0 1.45em;
+	width: 100%;
+	padding: 0;
+}
+
+.featureItem {
+	font-size: 12px;
+	line-height: initial;
+	margin-bottom: 5px;
+}
+
+#addressUpdateForm {
+	background: rgba(0, 0, 0, 0) none repeat scroll 0 0 !important;
+	display: block;
+	height: auto;
+	margin: 0;
+	overflow: hidden;
+	padding: 0 20px 0 0;
+	position: relative;
+	width: 335px !important;
+}
+
+.productFeatures {
+	background-color: #708090;
+	color: #ffffff;
+	height: 270px;
+	overflow: auto;
+	padding: 22px;
+}
+
+.productFeatures p {
+	color: #ffffff;
+}
+
+.productFeatures hr {
+	margin-left: unset;
+}
+
+input[type="text"], select, textarea {
+	background-image: -moz-linear-gradient(90deg, rgb(237, 239, 239) 0%,
+		rgb(246, 247, 247) 44%, rgb(255, 255, 255) 100%);
+	border-color: #ccc;
+	border-radius: 4px;
+	border-style: solid;
+	border-width: 1px;
+	color: #333;
+}
+
+input[type="text"], select {
+	height: 48px;
+	line-height: 32px;
+	width: 100%;
+}
+
+
+#addressForm2 {
+    background: #efefef none repeat scroll 0 0;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    color: black;
+    display: block;
+    margin: 18px 9px 11px 0px;
+    overflow: visible;
+    padding: 15px;
+    position: relative;
+}
+
+.streetName {
+	display: block;
+	height: 23px;
+	margin: 0 0 20px;
+	width: 265px;
+}
+
+#addressForm2 input {
+	background: #fff url("/common/images/input-shadow.jpg") repeat-x scroll
+		0 0;
+	border-color: #999 #ccc #ccc;
+	border-image: none;
+	border-radius: 5px;
+	border-style: solid;
+	border-width: 1px;
+	color: #666;
+	font-size: 12.5px !important;
+	display: block;
+	height: 25px;
+	line-height: 20px;
+	margin: 10px 12px 0 0;
+	padding: 3px 0 3px 8px;
+	width: 100%;
+}
+
+#updateAddressSubmitButton input[value="Update Address"] {
+    background: rgba(0, 0, 0, 0) -moz-linear-gradient(center top , #91d449, #6fa239) repeat scroll 0 0;
+    border: 1px solid #6fa337;
+    border-radius: 5px;
+    bottom: 80px;
+    box-shadow: 0 2px 7px 0 #888;
+    color: #fff;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: bold;
+    text-indent: 0;
+    text-shadow: 1px 1px 3px #3d3b00;
+    text-transform: uppercase;
+    z-index: 99999999;
+}
+
+.midInputContent {
+	margin: 1px;
+}
+.updateModalContent {
+    border: 2px solid #accf35 !important;
+    border-radius: 5px;
+    padding: 20px;
+}
+
+
+strong#EnterAddress2 {
+    color: #999;
+    display: block;
+    font-size: 15px;
+    font-weight: normal;
+    margin: 15px 10px 0 20px;
+     overflow: hidden;
+    padding: 0;
+    text-align: left;
+}
+.midBtnContent {
+	margin-left: auto !important;
+	margin-right: auto!important;
+	width: 65%;
+}
+#addressUpdateFormID .modal-body  {
+	border: 2px solid #accf35 !important;
+    border-radius: 5px;
+}
+#addressUpdateFormID .modal-content,#loadProductInfoDisplay .modal-content  {
+	padding: 15px;
+	top: 120px;
+}
+
+#bottomBlock {
+    border-top: 2px solid #000;
+    bottom: 0;
+    margin: 0;
+    overflow: visible;
+    position: absolute;
+    width: 100%;
+}
+
+#callMessaging {
+    float: left;
+    margin-top: 0;
+    width: 175px;
+}
+
+.modalPhone {
+    color: #006ea1;
+    font-size: 14px;
+    font-weight: bold;
+    width: 175px;
+}
+/*#addressUpdateFormID .modal-dialog{
+	 width: 30% !important;
+}*/
+.modelClose {
+	position: absolute;
+	float: right;
+	border: 2px solid;
+	border-radius: 55px;
+	color: rgb(255, 255, 255);
+	padding: 2px;
+	height: 28px;
+	width: 28px;
+	right: -20px;
+	top: -22px;
+	background:rgba(43, 19, 5, 0) linear-gradient(to bottom, #999 0%, #555 100%) repeat scroll 50% 50% !important;
+}
+
+.merchSelectbtn_modal {
+    background: #81bd41 none repeat scroll 0 0;
+    border: 1px solid #79b23d;
+    border-radius: 5px;
+    box-shadow: 1px 1px 0 #888;
+    color: #fff;
+    font-size: 24px;
+    font-weight: bold;
+    padding: 6px;
+    width: 85%;
+}
+
+li.L0, li.L1, li.L2, li.L3, li.L5, li.L6, li.L7, li.L8 {
+	list-style-type: decimal !important
+}
+
+ .tooltipz{
+    color: #000;
+    display: inline-block;
+    font-family: Verdana,Geneva,sans-serif;
+    left: 33px;
+    line-height: 16px;
+    padding: 0;
+    position: absolute;
+    top: 29px;
+    width: 280px;
+    z-index: 1135;
+    margin-top: 10px;
+    margin-left: -108px;
+}
+.SpecialOffer #SpecialOffer{cursor:pointer;}
+
+.moreTooltipz{
+left: 25px;
+top: 89px;
+}
+.moreToolfoot{
+	 height: 53px;
+}
+.contentz{
+	margin:0px;
+	padding:15px 30px 0px 30px;
+	background-image:url(../images/tmid.png) ;
+	background-repeat:repeat-y;
+	font-size: 11px;
+}
+.ttipHead{
+	width:280px;
+	font-size:18px;
+	font-weight:bold;
+	text-align:center;
+	padding:20px 0 0 0 ;
+	background-image:url(../images/ttop.png);
+	background-repeat: no-repeat;
+	color:#3697dc;
+}
+.ttipFoot{
+	width:280px;
+	height:83px;
+	background-image:url(../images/tbtm.png);
+	background-repeat: no-repeat;
+	margin-top: -20px;
+}
+.ttipHead .tspan {
+	border-bottom:#fc6c03 thin solid;
+  	width:230px;
+	display:block;
+	height: 5px;
+	margin:0 auto 0 auto;
+	padding:5px 0 0 0 ;
+}
+
+#productInfoDisplay .tooltipz{
+	left: -11px !important;
+	 top: 71px !important;
+}
+.contentz.dgrade.popover-content {
+    padding: 15px 30px 0;
+}
+
+body .ui-tooltip{
+ 	background: none !important;
+    background-image: none !important;
+    border: 0 !important;
+    padding: 0 !important;
+    border-radius: 0 !important;
+    box-shadow: 0px 0px 0px !important;
+    border-style: none !important;
+    border-width: 0px !important;
+ }
+
+.ProductImage.img-responsive.full-width{width:60% !important;}
+
+
+.compareBtnDiv {
+ 	margin-top: 44px;
+ 	margin-bottom: 44px;
+}
+#Container .compareBtnDiv {
+	margin-left: unset;
+}
+#addressentered {
+    color: #81bd41;
+    font-size: 14px;
+    font-weight: bold;
+}
+#mam {
+    background-color: #fff;
+    border: 3px solid #565759;
+    padding: 15px 0 15px 5px;
+}
+#mam div strong {
+    color: #81bd41;
+    display: block;
+    float: left;
+    font-size: 18px;
+    font-weight: bold;
+    margin: 0 0 15px;
+}
+#mam em {
+    color: #777777;
+    display: block;
+    font-style: normal;
+    font-weight: normal;
+    margin: 0 0 0 -11px;
+    padding: 15px 10px 5px 0;
+}
+#mamresults {
+    border: 1px solid #333;
+    color: #333;
+    font-size: 12px;
+    height: auto;
+    margin: 10px;
+    overflow: auto;
+    padding: 15px 0 15px 5px;
+    width: 95%;
+} 
+.modelClose {
+	position: absolute;
+	float: right;
+	border: 2px solid;
+	border-radius: 55px;
+	color: rgb(255, 255, 255);
+	padding: 2px;
+	height: 28px;
+	width: 28px;
+	right: -20px;
+	top: -22px;
+	background:rgba(43, 19, 5, 0) linear-gradient(to bottom, #999 0%, #555 100%) repeat scroll 50% 50% !important;
+}
+.addrCont {
+	padding: 0px 15px; margin: 0px 2px;
+}
+.dropdown-menu label{
+font-weight: normal ;
+}
+strong#EnterAddress2 {
+    color: #444;
+    font-size: 20px;
+    margin: 25px 3px 20px;
+    text-align: center;
+}
+/*#addressUpdateFormID .modal-dialog {
+    width: 28%;
+}*/
+#addressForm2 {
+    margin: -10px 9px 11px 13px;
+    width: 93%;
+}
+#addressUpdateFormID .modal-body {
+    padding: 0px;
+}
+.modalPhone {
+    font-size: 16px;
+    margin-top : 7px;
+}
+.callMessagingTitle {
+    color: #565759;
+    display: block;
+    height: auto;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: bold;
+    line-height: 13px;
+    margin: 0;
+    padding: 10px 0 0 0px;
+    width: auto;
+}
+.updateAddressPrivacy {
+    cursor: pointer;
+    padding-right: 10px;
+    padding-top: 36px;
+    font-family: "Arial",sans-serif;
+    font-size: 16px;
+}
+
+input[type="radio"]:not(old) + label > span {
+
+border-radius: 1.25em;
+}
+
+input[type="radio"]:checked:not(old) + label > span > span {
+    background: rgb(153, 204, 102) linear-gradient(rgb(179, 217, 140), rgb(153, 204, 102)) repeat scroll 0 0;
+    border: 0.0625em solid rgb(115, 153, 77);
+    border-radius: 0.25em;
+    display: block;
+    height: 0.615em;
+    margin: 0.165em;
+    width: 0.62em;
+}
+
+#addressUpdateFormID {
+	margin: auto;
+	width: auto;
+	overflow: auto;
+}
+.bold{
+font-weight :bold !important;
+}
+.unBold{
+font-weight :normal !important;
+}
+
+#wrapper #Container #productInfoDisplay {
+	background-color: rgba(0, 0, 0, 0.65);
+	margin-top: auto;
+}
+
+.modal-backdrop.fade.in {
+	opacity: 0;
+}
+
+.callText{
+    float: left;
+    padding: 0px 6px 0px 0px;
+}
+.callNumber{
+	padding: 0px 8px 0px 0px;
+}
+
+
+.asyncProviderDetails.selected{
+	background: rgba(0, 0, 0, 0) linear-gradient(to bottom, #ffffff 50%, #e5f5fd 100%) repeat scroll 0 0;
+    border: 3px solid #81bd41;
+}
+
+.pagination-content{
+	text-align: center;
+}
+
+.pagination-content .ResultsSummary {
+    font-weight: bold;
+    margin-bottom: -23px;
+}
+
+#pagination-design .pagination-icon-left {
+	border: unset;
+	margin: 1px 29px 0 0;
+	background-color: #ffffff;
+}
+
+#pagination-design .pagination-icon-right {
+	border: unset;
+	margin: 1px 0 0 29px;
+	background-color: #ffffff;
+	
+}
+
+#pagination-design li a {
+	border: unset;
+    background-color: #e3e4e4;
+    border-radius: 3px;
+    color: #333;
+    height: 32px;
+    margin: 5px 3px 0;
+    width: 32px;
+    font-size: 16px;
+    padding: 4px;
+}
+
+ li.active a {
+	background-color: #f58025 !important;
+    color: #fff !important;
+}
+
+body.modal-open {
+    position: fixed;
+}
+
+.asyncProviderDetails {
+	border: 3px solid rgb(204, 204, 204); border-radius: 5px; float: left; margin: 4px 8px 0 0; text-align: center; height:60px; width: 85px;
+}
+.asyncProviderDetails a > span {
+	width: 100%; text-align:center;
+}
+.asyncProviderDetails span.asyncProviderLogo{height:30px;display: block;margin-top: 3px;}
+#filterPlansDivId{
+	width:100%;margin:0 auto !important;padding:0 !important;
+}
+#filterPlansDivId > div:first-child {
+    padding: 0;
+     width: 90%;
+}
+#filterPlansNavigation{
+	float: left;max-width: 75%;
+}
+#sortResultsListForm{
+	float: right; margin: 46px 0 0;width: auto;
+}
+#displayProducts{
+	width:96%;margin:0 auto !important;padding:0 !important;
+}
+#myNavbar .container-fluid{margin:0; padding: 0;}
+
+/* Results Container CSS */
+#displayProducts .container {
+    min-height: auto;
+}
+#displayProducts .container .row{margin:0 !important;display: table-row;}
+#displayProducts .left_blk, #displayProducts .middle_blk, #displayProducts .right_blk, #displayProducts .last_blk{display: table-cell;padding: 5px;vertical-align: top;}
+#displayProducts .left_blk{
+	max-width: 120px;
+    width: 10%;
+}
+.left_blk #ProductImageId{margin-left: 0px; width: 80%; padding-top: 0px;}
+.left_blk #ProductImageId img.img-responsive {
+    height: auto;
+    max-width: 80px !important;
+}
+#displayProducts .middle_blk{
+	padding: 5px 5px 20px;
+	width: 40%;
+}
+.middle_blk .SpecialOffer{
+	max-width: 60px;
+	width: 60px;
+}
+.middle_blk .SpecialOffer p{
+	margin: 0 !important;
+	text-align: center;
+}
+.middle_blk .viewChannelLineUp{
+	font-size: 11px;
+	font-weight: bold;
+}
+#displayProducts .right_blk{
+	max-width: 172px;
+	width: 172px;
+    padding: 5px 16px 5px 105px;
+}
+#displayProducts .right_blk p:empty{display:none;}
+.right_blk #priceParagraph {
+	background: #43b4e4 none repeat scroll 0 0;
+	color: #fff;
+	padding: 10px;
+	width: 179px;
+	height: 110px;
+	margin: 0;
+}
+#productInfoDisplay #priceParagraph {
+    background: #43b4e4 none repeat scroll 0 0;
+    color: #fff;
+    width: 270px;
+    height: auto;
+    margin: 0;
+    padding: 0;
+    margin-bottom:10px;
+    padding-left:10px;
+    padding-top:10px;
+    padding-bottom:10px;
+}
+#priceParagraph span.content {
+	font-size: 0.8em;
+	font-weight: normal;
+	display: block;
+}
+#priceParagraph span.displayPrice {
+	display: inline-block;
+	font-size: 35px;
+	font-weight: bold;
+	margin-left: 2px;
+	margin-top: 8px;
+}
+span.displayPrice {
+	font-size: 2em;
+	left: 0;
+	top: -15px;
+}
+#priceParagraph span.super {
+	display: inline-block;
+	font-size: 18px;
+	font-weight: normal;
+	position: absolute;
+}
+#displayProducts .last_blk{
+	float: right;
+	min-height:120px;
+	position: relative;
+	max-width: 270px;
+    width: 270px;
+    text-align: center;
+}
+.last_blk .phoneOnlyCTA {
+    color: #81bd41;
+    display: table-cell;
+    font-size: 1.8em;
+    font-weight: bold;
+    text-align: center;
+    text-transform: uppercase;
+    margin-top: 15px;
+    width: inherit;
+}
+.last_blk .phoneOnlyCTA > span {
+    color: #595959 !important;
+    font-size: 0.5em;
+    font-weight: bold;
+    display:block;
+    text-transform: none;
+}
+.last_blk .merchSelectbtn {
+	display: inline-block;
+	background: #81bd41 none repeat scroll 0 0;
+	border: 1px solid #79b23d;
+	border-radius: 5px;
+	box-shadow: 1px 1px 0 #888;
+	color: #fff;
+	font-size: 24px;
+	font-weight: bold;
+	height: 49px;
+	margin-top: 27px;
+	padding: 6px;
+	text-align: center;
+	width: 88%;
+	line-height: 1.5;
+}
+.comparebox{
+	position: absolute;
+	bottom: 3px; right: 5px;	
+}
+/* End Results Container CSS */
+
+#asyncProviderStatus{
+	height:57px;
+	 display: inline-block;
+  vertical-align: middle;
+  -webkit-transform: translateZ(0);
+  transform: translateZ(0);
+  box-shadow: 0 0 1px rgba(0, 0, 0, 0);
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-transition-duration: 0.3s;
+  transition-duration: 0.3s;
+  -webkit-transition-property: transform;
+  transition-property: transform;
+  -webkit-transition-timing-function: ease-out;
+  transition-timing-function: ease-out;
+}
+.progress { 
+  height: 2.5em !important;
+  width: 45%;
+  i { line-height: 3.5em; }
+}
+
+.progress-bar { 
+  transition: width 1s ease-in-out; 
+}
+.progress-striped .progress-bar-success {
+    background-image: none;
+}
+.progress-bar-striped, .progress-striped .progress-bar {
+    background-size: 40px 40px;
+}
+.progress-bar-success {
+    background-image: linear-gradient(to bottom, #43b4e4 0px, #43b4e4 100%) !important;
+    background-repeat: repeat-x;
+}
+.progress-bar-success {
+    background-color: #43b4e4;
+}
+.progress_status{
+    font-family: arial;
+    padding-top: 6px;
+    position: absolute;
+    right: 53%;
+    z-index: 99999999;
+}
+#productInfoDisplay .modal-dialog{
+ margin: 92px auto 30px !important;
+
+}
+.categoryStyle{
+	background:rgb(67, 180, 228) none repeat scroll 0% 0%; 
+	color: rgb(255, 255, 255); 
+	font-weight: bold;
+}
+#noResultsCatDiv{
+	 font-weight:bold;
+	 font-size:15px;
+	 display:none;
+	 width:73%;
+	 float:right;
+}
+#invalidAddressMsg{
+    color: red;
+    left: 0;
+    font-size: 14px;
+    font-weight: bold;
+    position: static;
+    text-align: center;
+    display :none;
+    top:-9px;
+}
+.phoneOnlyCTA {
+    color: #81bd41;
+    display: inline-block;
+    font-size: 2em;
+    font-weight: bold;
+    position: absolute;
+    text-align: center;
+    text-transform: uppercase;
+    margin-top: 50px;
+    width: 100%;
+}
+
+.phoneOnlyCTA span, .phoneOnlyCTAMoreDetails span {
+    color: #595959;
+    font-size: 0.5em;
+    font-weight: bold;
+    display:block;
+    text-transform: none;
+}
+
+.phoneOnlyCTAMoreDetails{
+    color: #81bd41 !important;
+    font-size: 2em;
+    font-weight: bold;
+    font-size: 24px;
+    font-weight: bold;
+}
+#displayProducts ul.navbar-nav button {
+    border: 3px solid transparent !important;
+}
+#displayProducts ul.navbar-nav button.filterClass{
+   border: 3px solid #81bd41 !important;
+  -background-color:#999 !important;
+}
+
+.tabSpecialOffer{
+	display:none;
+}
+
+.merchSelectbtn_mb{
+	font-size:23px;
+	width:100%;
+	top:-10px;
+}
+
+ .resultsChannelLink_mb{
+	float: right;
+    right: 0;
+} 
+.RecordTitle{
+	 padding: 0;
+}
+
+/** ========== Energy Results page CSS =====Start===== */
+
+/** Display Utility Name CSS */
+.usagePriceInputLbl {
+    width: 62px !important;
+    height: 26px !important;
+    margin: -3px 3px 0 3px !important;
+}
+
+/** kWh/month Widget CSS */
+.avgPriceBasedPrg {
+    display: inline-flex;
+    margin-left: auto;
+    font-size: 13px;
+    margin-top: 9px;
+    background-color: #e3e4e4;
+    border-radius: 4px;
+    padding: 8px;
+    height: 35px;
+}
+
+.avgPriceBasedPrg #kWhPerMonthHelp {
+	margin-left: 5px;
+}
+
+.utilityNamekWhWidget {
+    display: inline-flex;
+    margin: 3px 0 -23px 0;
+    width: 100%;
+    color: #555555;
+}
+
+.showingResFrUtility {
+    font-size: 17px;
+    margin-top: 11px;
+}
+
+.displayUtilityName {
+    color: #036e9c;
+    font-size: 19px;
+    text-transform: capitalize;
+    text-decoration: underline;
+}
+
+.energyTierDispHide_500 , .energyTierDispHide_1000 {
+	display: none;
+}
+
+/** Start -- Estimate Usage Cost for Energy CSS*/
+	#estUsageCostRP {
+    background: url(../../common/images/energy_estimate_cost_tab.png) no-repeat scroll 10px 6px; color: #fff; font-size: 13px; padding: 3px 0 0 34px; text-decoration: none; border-top: 1px solid #85ceee; display: inline-block;
+    	line-height: normal; text-align: left; font-weight: normal; margin-left: 15px; height: 34px; margin-top: 20px; margin-right: 12px; }	
+	#estimateMonthlyBG { background-color: #EFEFEF; height: 365px; margin: 18px; }
+	.modalTitle { color: #81bd41; font-size: 22px; font-weight: bold; text-align: center; }
+	.estimateSecondaryMsg { color: #3e4857; font-size: 16px; font-weight: bold; margin-top: 20px; }
+	.estimateTertiaryMsgBG { color: #3e4857; font-size: 13px; font-style: italic; margin: 22px 4px 28px 0; }	
+	#estimateUsageKwh { background-color: #FFF; text-align: center; height: 174px; border-radius: 5px; }
+	.estimatePricesContent { display: inline-flex; margin: 21px 0 5px 0; font-size: 16px; }
+	.estimateUsageScenarios { display: inline-flex; color: #fff; }
+	.currentPriceStyle { color: #3e4857; font-size: 2em; }
+	#customerGivenUsage { margin: 0px 0px 20px 11px; width: 80px; }
+	.multiplicateSymbol { color: #c7cbd2; font-size: 2em; font-weight: bold; margin-left: 8px; }
+	.centsCurrencySymbol { font-size: 2em; margin-left: 5px; }
+	#estimateCalculatedUnit { color: #81bd41; font-size: 2em; margin-left: 13px; font-weight: bold; }
+	.perMonthUnit { font-size: 15px; font-weight: bold; margin-left: -8px; }
+	.usageLevelCaptions { font-size: 12px; color: #fff; }
+	.estimateUsageScenarios div { background-color: rgb(84, 86, 87); margin: 4px; padding: 5px 0px 0px; width: 191px; height: 49px; }
+	.estimateUsageScenarios .usageSelected { background-color: #81bd41; }
+	body .electricity-dialog { width: 706px !important; }
+/** End --- Estimate Usage Cost for Energy CSS*/
+
+/** ========== Energy Results page CSS =====End===== */
+
+@media(min-width:1180px){
+	#displayProducts .middle_blk{
+		position: relative;
+	}
+	.middle_blk .viewChannelLineUp{
+		position:absolute;
+		bottom: 0px; right: 5px;
+	}
+	.middle_blk .SpecialOffer{
+		position: absolute;
+		right: -65px;
+		top: 5px;
+	}
+	#priceParagraph span.super {
+		position: absolute;
+		left: auto;
+		top: auto;
+		margin-left: 3px;
+	}
+	.moreid{
+		/* position: absolute;
+		bottom: 5px; left: 5px; */
+	margin-top: 5px;
+    display: inline-block;
+    position: inherit;
+    margin-left: 6px;
+	}
+}
+@media(max-width:640px){
+	#noResultsCatDiv{
+	width:100% !important;
+	}
+	
+}
+@media(max-width:670px){
+	#priceInfoLink{
+	margin: 26px 0 0 4px;
+	}
+	#phoneNumberForOrder {
+	margin: 22px 0 0 !important;
+	}
+	#resultscontainer.container {
+    padding: 0 0 23px;
+}
+}
+@media(max-width:1179px){
+	.comparePlaneCont {
+		background: #eee;
+		padding: 5px 20px 0;
+		min-height: 40px;
+		height: auto;
+		margin: 0;
+		width: 100%;
+		display: inline-block;
+	}
+	#noResultsCatDiv {
+	    float: left;
+	    width: 55%;
+	    margin-left: 10px;
+	}
+}
+/* Mobile view */
+@media only screen and (max-width: 640px){
+	#estUsageCostRP span{
+		display: none;
+	}
+		#priceInfoLink {
+    left: 14px !important;
+    top: -25px !important;
+}
+	#estUsageCostRP {
+		background: rgb(182, 201, 209) url(../../common/images/energy_estimate_cost.png) no-repeat scroll 3px 3px;
+		position: relative;
+		top: -52px;
+		right: 146px;
+		height: 26px;
+		padding-left: 25px;
+		border-top: 0px;
+		border-radius: 3px;
+	}
+	.ui-widget-content {
+		font-size: 11px !important;
+		 max-width: 208px !important;
+	}
+	#asyncproviderListWrap {
+	    border: none;
+	    margin: 15px auto 0;
+	    padding: 0;
+	}
+	.zip-area-wrap{
+		float: unset;
+	    background-color: #f7f7f7;
+	    border: 1px solid #f3f3f3;
+	    border-radius: 5px;
+	    color: #343434;
+	    font-size: 12px; font-weight: normal;
+	    margin: 0 auto !important;
+	    max-width: 260px;
+	    padding: 10px;
+	    width: auto !important;
+	}
+	body .zip-area-wrap input[value*="Change Address"]{display: inline-block;padding: 4px 5px;font-size: 11px;font-weight: normal;}
+	#filterPlansDivId > div:first-child {
+	    display: none;
+	}
+	#displayProducts {
+	    width: 90% !important;
+	}
+	#sortResultsListForm{float: unset;margin: 20px auto;width: 100%;text-align: center;}
+	#sortResultsListForm #sortKey{
+		padding: 0 31px 0 0 !important;
+	    position: unset;
+	    width: auto !important;
+    }
+	#resultscontainer.container {
+	    margin: 0 auto 8px;
+	    width: 98% !important;
+	}
+	#displayProducts .left_blk, #displayProducts .middle_blk, #displayProducts .right_blk, #displayProducts .last_blk {
+	    display: inline-block;
+	}
+	#resultscontainer.container{}
+	#displayProducts .container .row {display: block;padding: 5px;position: relative;}
+	#displayProducts .left_blk{max-width: 100%;width:100%;}
+	#displayProducts .middle_blk{max-width: 100%;width:100%;padding: 5px;}
+	.middle_blk .RecordTitle{max-width:77%;margin-left: 5px;float: left;}
+	.middle_blk .RecordDescription{display: none;}
+	.middle_blk .SpecialOffer{float: right;max-width: 50px;width: 50px;margin: 10px 5px 0 0;}
+	.middle_blk .savings.ng-binding {display: none;}
+	#displayProducts .right_blk{max-width: 172px;width:172px;padding:0;position: absolute; right: 0; top: 0;}
+	.right_blk #priceParagraph {background: none;height: auto;margin: 0;padding: 10px 10px 0 0;width: 172px;color: #036ba2 !important;text-align: right;}
+	.right_blk #priceParagraph span.content{display: none;}
+	.right_blk #priceParagraph .strikeThruPrice{margin:0;padding:0;}
+	.right_blk #priceParagraph .strikeThruPrice span {display: inline-flex;}
+	.right_blk #priceParagraph span.super{position: relative;padding:0;}
+	#displayProducts .last_blk{max-width: 100%;min-height: 50px;width:100%;padding: 5px;}
+	.last_blk .merchSelectbtn_mb{}
+	.last_blk .merchSelectbtn{margin-top: 0;width: 100%;}
+	.last_blk #moreDetailslink {float: left;margin: 10px 0 0;}
+	.last_blk #moreDetailslink a.demo{}
+	.last_blk .comparebox{display:none;}
+	#displayProducts .compareBtnDiv{display: none;}
+	#displayProducts .pagination-content{margin-top: 35px;}
+	#asyncProvidersList {
+		display: none;
+	}
+	.compareLeftCont {
+		padding-top: 3px;
+	}
+	.navbar {
+		display: none;
+	}
+	#sortKey {
+		width: 176px;
+		right: 173%;
+		top: 50%;
+	}
+	#viewChannelLineUp {
+		display: none;
+	}
+	#moreDetailslink {
+		clear: both;
+		float: left;
+		margin: 15px 0 2px 12px;
+	}
+	#phoneNumberForOrder {
+		margin: 0;
+		background: #81bd41;
+		width: 93%;
+		color: #ffffff;
+		font-size: 20px;
+		border-radius: 5px;		
+		line-height:1.1em;
+		padding-bottom:3px;
+	}
+	#phoneNumberForOrder span{font-size:0.6em;color:  #fff;font-weight: normal;}
+}
+.hulu {
+    margin-top: 50px;
+}
+/* Tablet Devices */
+@media only screen and (min-width: 641px) and (max-width: 1179px) {
+	.estimateUsageScenarios { display: -webkit-inline-flex; color: #fff; }
+	.estimatePricesContent { display: -webkit-inline-flex; margin: 21px 0 5px 0; font-size: 16px; }
+	#asyncproviderListWrap {
+	    margin: 7px auto 0;
+	}
+	#displayProducts .container {
+	    position: relative;
+	}
+	#displayProducts .middle_blk {}
+	.middle_blk .viewChannelLineUp {
+	    bottom: 3px;
+	    font-size: 11px;
+	    font-weight: bold;
+	    position: absolute;
+	    left: 90px;
+	    margin: 0;
+	}
+	.middle_blk .resultsChannelLink{margin-left: 0;}
+	.middle_blk .SpecialOffer {
+	    left: 5px;
+	    max-width: 60px;
+	    position: absolute;
+	    top: 50px;
+	    width: 60px;
+	}
+	.middle_blk .savings.ng-binding {display: none;}
+	#displayProducts .right_blk {
+	    max-width: 172px;
+	    padding: 5px 0 5px 0;
+	    width: 172px;
+	}
+	.right_blk #priceParagraph {
+	    background: #43b4e4;
+	    color: #fff;
+	    height: 110px;
+	    margin: 0;
+	    padding: 10px 10px 0 10px;
+	    width: 172px;
+	}
+	.right_blk #priceParagraph span.content {
+	    display: block;
+	    font-size: 0.8em;
+	    font-weight: normal;
+	    line-height: normal;
+	    position: unset;
+	    background: none;
+    	color: #fff;
+    	height: auto;
+	    margin: auto;
+	    padding: 0;
+	    width: auto;
+	}
+	.right_blk #priceParagraph .strikeThruPrice {
+	    font-size: 2em;
+	    font-weight: bold;
+	    line-height: normal;
+	    position: unset;
+	}
+	.last_blk .merchSelectbtn {position:unset;}
+	.last_blk .moreid {
+		position: absolute; bottom: 5px;left: 5px;
+	}
+	.last_blk .moreid a.demo {}
+	.ttipFoot{
+		background-image:url(../images/tbtm-left.png);
+	}
+}
+@media only screen and (min-width: 641px) and (max-width: 699px) { /* 641px to 699px*/
+	#displayProducts .last_blk { max-width: 220px; width: 220px; }
+	.last_blk .merchSelectbtn { font-size: 20px; font-weight: bold; width: 204px;}
+}
+
+@media only screen and (min-width: 641px) and (max-width: 660px) { /* 641px to 660px*/
+	#displayProducts .middle_blk { width: 16%; }
+}
+
+@media only screen and (min-width: 661px) and (max-width: 699px) { /* 641px to 699px*/
+	#displayProducts .middle_blk { width: 19%; }
+}
+
+@media only screen and (min-width: 700px) and (max-width: 720px) { /* 700px to 720px*/
+	#displayProducts .middle_blk { width: 16%; }
+}
+
+@media only screen and (min-width: 721px) and (max-width: 740px) { /* 721px to 740px*/
+	#displayProducts .middle_blk { width: 18%; }
+}
+
+@media only screen and (min-width: 741px) and (max-width: 767px) { /* 741px to 767px*/
+	#displayProducts .middle_blk { width: 19.5%; }
+}
+@media(max-width:1024px){
+	#navbarCollapse .allconnectPhone{padding: 20px 20px 0 0;}
+	.merchSelectbtn{font-size:20px;}
+	.zip-area-wrap {font-size:12px;}
+	#navbarCollapse ul{clear:both;}
+	.RecordDescription{display:none;}
+	
+}
+@media (max-width: 720px) {
+	#noResultsCatDiv {
+	    width: 100%;
+	}
+}
