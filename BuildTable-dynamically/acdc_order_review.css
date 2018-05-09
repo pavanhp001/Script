@@ -1,0 +1,57 @@
+#orderInfoContent {margin-top: 10px;}
+
+.installationDatesInfo{float:right;width:40%;min-height:122px;border-radius: 0;font-size: 13px;}
+#left_sec_content .confirm-dates .serviceAddressContent span:first-child {font-size: 13px;color:#545557;font-weight: bold;padding-bottom: 0;}
+#left_sec_content .confirm-dates .serviceAddressContent span:nth-child(2) {font-size: 13px;display: inline-block;color:#545557;padding-bottom: 0;font-weight: normal;}
+ 
+.customerInfo{float:left;width:57%;border-radius: 0;font-size: 13px;}
+ 
+.custName{margin-top:16px;font-weight:bold}
+ 
+.customerInfo .serviceAddressContent{margin-top:15px;}
+.customerInfo .serviceAddressContent address{margin-bottom: 0;}
+ 
+.serviceAddress{font-weight:bold;margin:5px 0px}
+ 
+table.priceTable{width:100%}
+ 
+table.priceTable thead tr{width:50%}
+ 
+table.priceTable thead tr th{color: #7fbd40;font-size: 14px;font-weight: bold;text-decoration: none;padding: 3px;}
+ 
+table.priceTable tbody tr td{color: #555756;font-size: 17px;font-weight: bold;line-height: normal;padding: 5px 3px;}
+ 
+.priceTableContent{font-size:16px;color:#555;padding-top: 10px;}
+ 
+table.priceTable tbody tr td div{font-weight:initial;font-size: 13px;}
+ 
+table.orderDetailsTable { width:100%; padding:10px; font-size:12px; }
+ 
+table.orderDetailsTable thead tr{width:50%}
+ 
+table.orderDetailsTable thead tr th{text-decoration:underline;font-weight:500;font-size: 13px;}
+ 
+table.orderDetailsTable tbody tr td:first-child{font-weight:bold}
+ 
+table.priceTable td,th{padding:5px}
+ 
+table.orderDetailsTable tbody tr td{padding:5px}
+ 
+.panel-body{border:1px solid #eee}
+ 
+#left_sec_content #bottom-footer .next_step span{background-color:#81bd41;border-radius:5px;color:#fff;display:table-cell;cursor:pointer;font-size:18px;font-weight:bold;height:34px;text-align:center;text-decoration:none;vertical-align:middle;width:165px}
+ 
+#left_sec_content #customizations .next_step span{background-color:#81bd41;border-radius:5px;color:#fff;display:table-cell;cursor:pointer;font-size:18px;font-weight:bold;height:34px;text-align:center;text-decoration:none;vertical-align:middle;width:165px}
+ 
+#gobacktopage{text-decoration:underline;cursor:pointer}
+ 
+#orderInfoContent .alert-info{background-color:transparent;border-color:#ccc;color:#333;border: medium none;}
+
+.promotionDetails { font-size: 12px; font-weight: bold; margin: 6px 12px; }
+
+.promotionConditions { font-size: 12px; font-weight: bold; margin: 6px 12px; }
+.billingDisclosure {
+    margin: 15px 0 0;
+    padding: 4px 0;
+}
+ 
